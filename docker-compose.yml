@@ -1,0 +1,87 @@
+version: "3.8"
+
+services:
+  frontend:
+    build:
+      context: ./Cinema-tec # Correct path to your frontend
+      dockerfile: Dockerfile
+      args:
+        PORT: ${FRONTEND_PORT}
+    container_name: cinema-frontend
+    environment:
+      - PORT=${FRONTEND_PORT}
+    expose:
+      - ${FRONTEND_PORT}
+    depends_on:
+      - backend
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ./Cinema-nest # Correct path to your backend
+      dockerfile: Dockerfile
+      args:
+        PORT: ${BACKEND_PORT}
+    container_name: cinema-backend
+    environment:
+      - PORT=${BACKEND_PORT}
+      - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:${POSTGRES_PORT}/${POSTGRES_DB}
+    expose:
+      - ${BACKEND_PORT}
+    depends_on:
+      - postgres
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: cinema_db_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "${POSTGRES_PORT}:${POSTGRES_PORT}"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: cinema_pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@example.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+    ports:
+      - "${PGADMIN_PORT}:80"
+    depends_on:
+      - postgres
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:alpine
+    container_name: cinema-nginx
+    ports:
+      - "80:80" # Main entry point to the application
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - app-network
+    restart: unless-stopped
+
+volumes:
+  postgres-data:
+
+networks:
+  app-network:
+    driver: bridge

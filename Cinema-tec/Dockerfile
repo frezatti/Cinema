@@ -1,14 +1,20 @@
-FROM node:18-alpine
+FROM node:lts-alpine
 
 WORKDIR /app
+
+ARG PORT
+
+ENV PORT=${PORT}
 
 COPY package*.json ./
 RUN npm install
 
 COPY . .
 
-EXPOSE 5173
+RUN npm run build
 
-# Command to run the Vite dev server
-# The --host flag is important to expose the server to other containers
-CMD ["npm", "run", "dev", "--", "--host"]
+RUN npm install -g serve
+
+EXPOSE ${PORT}
+
+CMD ["serve", "-s", "dist", "-l", "${PORT}"]

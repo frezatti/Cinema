@@ -1,6 +1,10 @@
-FROM node:18-alpine
+FROM node:lts-alpine
 
-WORKDIR /usr/src/app
+WORKDIR /app
+
+ARG PORT
+
+ENV PORT=${PORT}
 
 COPY package*.json ./
 RUN npm install
@@ -12,6 +16,6 @@ COPY . .
 
 RUN npm run build
 
-EXPOSE 3000
+EXPOSE ${PORT}
 
-CMD ["sh", "-c", "npx prisma migrate deploy && node dist/main"]
+CMD ["sh", "-c", "npx prisma migrate deploy && npm run start:prod"]
