@@ -1,9 +1,7 @@
-version: "3.8"
-
 services:
   frontend:
     build:
-      context: ./Cinema-tec # Correct path to your frontend
+      context: ./Cinema-tec
       dockerfile: Dockerfile
       args:
         PORT: ${FRONTEND_PORT}
