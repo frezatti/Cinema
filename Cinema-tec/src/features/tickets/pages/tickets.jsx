@@ -7,7 +7,7 @@ export const Ticket = () => {
 
     const ticketColumns = [
         { header: 'ID', accessor: 'id' },
-        { header: 'Session ID', accessor: 'session_id' },
+        { header: 'Session ID', accessor: 'sessionId' },
         { header: 'Seat Number', accessor: 'seat_number' },
         {
             header: 'Purchase Time',

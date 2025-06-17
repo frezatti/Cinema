@@ -4,8 +4,11 @@ services:
     build:
       context: ./Cinema-tec
       dockerfile: Dockerfile
+      args:
+        - PORT=${FRONTEND_PORT}
     restart: unless-stopped
-    command: serve -s build -l 3000
+    environment:
+      - PORT=${FRONTEND_PORT}
     depends_on:
       - backend
     networks:

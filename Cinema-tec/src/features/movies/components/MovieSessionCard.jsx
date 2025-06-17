@@ -15,7 +15,7 @@ export const MovieSessionCard = ({ movie, sessions, theaters }) => {
 
     const getTheaterName = (theaterId) => {
         const theater = theaters.find(t => t.id === theaterId);
-        return theater ? theater.name : 'Unknown Theater';
+        return theater ? theater.name || `Theater ${theater.number}` : 'Unknown Theater';
     };
 
     return (
@@ -31,7 +31,7 @@ export const MovieSessionCard = ({ movie, sessions, theaters }) => {
                             <ListGroup.Item key={session.id} className="d-flex flex-column">
                                 <div>
                                     <strong>Theater:</strong> {getTheaterName(session.theaterId)}<br />
-                                    <strong>Time:</strong> {formatDateTime(session.dataTime)}<br />
+                                    <strong>Time:</strong> {formatDateTime(session.dateTime)}<br />
                                     <strong>Price:</strong> {formatPrice(session.price)}
                                 </div>
                                 <Link to={`/tickets/new?sessionId=${session.id}`} className="btn btn-primary btn-sm mt-2 align-self-end">

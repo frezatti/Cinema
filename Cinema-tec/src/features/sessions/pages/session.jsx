@@ -7,16 +7,16 @@ export const Session = () => {
 
     const sessionColumns = [
         { header: 'ID', accessor: 'id' },
-        { header: 'Movie', accessor: 'movie_id' }, // This will show the ID, could be improved
-        { header: 'Theater', accessor: 'theater_id' }, // This will show the ID, could be improved
+        { header: 'Movie', accessor: 'movieId' },
+        { header: 'Theater', accessor: 'theaterId' },
         {
             header: 'Session Time',
-            accessor: 'session_time',
+            accessor: 'dateTime',
             cell: (value) => new Date(value).toLocaleString()
         },
         {
             header: 'Price',
-            accessor: 'ticket_price',
+            accessor: 'price',
             cell: (value) => `$${parseFloat(value).toFixed(2)}`
         },
     ];

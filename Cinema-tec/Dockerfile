@@ -17,4 +17,4 @@ RUN npm install -g serve
 
 EXPOSE ${PORT}
 
-CMD ["serve", "-s", "dist", "-l", "${PORT}"]
+CMD serve -s dist -l ${PORT}

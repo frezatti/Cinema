@@ -7,11 +7,9 @@ export const TicketModal = ({ show, handleClose, entity, onSave }) => {
     const [sessions, setSessions] = useState([]);
 
     useEffect(() => {
-        // Fetch sessions for the dropdown
         sessionService.getAll().then(res => setSessions(res.data));
 
-        // Initialize form with entity data or defaults
-        setFormData(entity || { session_id: '', seat_number: '' });
+        setFormData(entity || { sessionId: '', seat_number: '' });
     }, [entity]);
 
     const handleChange = (e) => {
@@ -23,7 +21,7 @@ export const TicketModal = ({ show, handleClose, entity, onSave }) => {
         e.preventDefault();
         onSave({
             ...formData,
-            session_id: parseInt(formData.session_id)
+            sessionId: parseInt(formData.sessionId)
         });
     };
 
@@ -36,11 +34,11 @@ export const TicketModal = ({ show, handleClose, entity, onSave }) => {
                 <Modal.Body>
                     <Form.Group className="mb-3">
                         <Form.Label>Session</Form.Label>
-                        <Form.Select name="session_id" value={formData.session_id || ''} onChange={handleChange} required>
+                        <Form.Select name="sessionId" value={formData.sessionId || ''} onChange={handleChange} required>
                             <option value="">Select a Session</option>
                             {sessions.map(session => (
                                 <option key={session.id} value={session.id}>
-                                    {`ID: ${session.id} - ${new Date(session.session_time).toLocaleString()}`}
+                                    {`ID: ${session.id} - ${new Date(session.dateTime).toLocaleString()}`}
                                 </option>
                             ))}
                         </Form.Select>
