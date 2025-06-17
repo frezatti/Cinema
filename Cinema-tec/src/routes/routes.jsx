@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Layout } from "../layouts/layout";
 import { Home } from "../features/home/pages/HomePage";
-import { Movies } from "../features/movies/pages/MoviesPage";
+import { Movies } from "../features/movies/pages/movies";
 import { Theaters } from "../features/theater/pages/theater";
 import { Sessions } from "../features/sessions/pages/session";
 import { Tickets } from "../features/tickets/pages/tickets";
