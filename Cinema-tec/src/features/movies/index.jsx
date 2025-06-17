@@ -1,4 +1,4 @@
-import { Movies } from "./pages/MoviesPage";
+import { Movies } from "./pages/movies.jsx";
 
 function MoviesPage() {
     return (

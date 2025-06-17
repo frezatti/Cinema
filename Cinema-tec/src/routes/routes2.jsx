@@ -9,27 +9,27 @@ import { Tickets } from "../features/tickets/pages/tickets";
 const router = createBrowserRouter([
     {
         path: "/",
-        Component: Layout,
+        element: <Layout />,
         children: [
             {
-                index: true,
-                Component: Home,
+                path: "/",
+                element: <Home />,
             },
             {
-                path: "movies",
-                Component: Movies,
+                path: "/movies",
+                element: <Movies />,
             },
             {
-                path: "theaters",
-                Component: Theaters,
+                path: "/theaters",
+                element: <Theaters />,
             },
             {
-                path: "sessions",
-                Component: Sessions,
+                path: "/sessions",
+                element: <Sessions />,
             },
             {
-                path: "tickets",
-                Component: Tickets,
+                path: "/tickets",
+                element: <Tickets />,
             }
         ],
     },

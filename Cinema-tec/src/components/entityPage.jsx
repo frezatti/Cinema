@@ -1,96 +1,97 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import * as movieService from '../services/movieService';
 import { Container, Button, Modal, InputGroup, Form } from 'react-bootstrap';
-import { GenericDataTable } from '../../../components/GenericDataTable';
-import { MovieFormModal } from '../components/MovieFormModal';
+import { GenericDataTable } from './datatable';
 
-export const Movies = () => {
-    const [movies, setMovies] = useState([]);
+export const EntityPage = ({
+    entityName,
+    entityLabel,
+    service,
+    columns,
+    formComponent: FormComponent
+}) => {
+    const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
 
     const [showFormModal, setShowFormModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
-    const [selectedMovie, setSelectedMovie] = useState(null);
+    const [selectedItem, setSelectedItem] = useState(null);
 
-    const fetchMovies = () => {
+    const fetchData = () => {
         setLoading(true);
-        movieService.getAllMovies()
+        service.getAll()
             .then(response => {
-                setMovies(response.data);
+                setData(response.data);
                 setError(null);
             })
             .catch(error => {
-                console.error("Failed to fetch movies:", error);
-                setError("Could not load movie data.");
+                console.error(`Failed to fetch ${entityLabel}:`, error);
+                setError(`Could not load ${entityLabel} data.`);
             })
             .finally(() => setLoading(false));
     };
 
     useEffect(() => {
-        fetchMovies();
+        fetchData();
     }, []);
 
-    const handleOpenFormModal = (movie = null) => {
-        setSelectedMovie(movie);
+    const handleOpenFormModal = (item = null) => {
+        setSelectedItem(item);
         setShowFormModal(true);
     };
 
     const handleCloseFormModal = () => {
         setShowFormModal(false);
-        setSelectedMovie(null);
+        setSelectedItem(null);
     };
 
-    const handleOpenDeleteModal = (movie) => {
-        setSelectedMovie(movie);
+    const handleOpenDeleteModal = (item) => {
+        setSelectedItem(item);
         setShowDeleteModal(true);
     };
 
     const handleCloseDeleteModal = () => {
         setShowDeleteModal(false);
-        setSelectedMovie(null);
+        setSelectedItem(null);
     };
 
-    const handleSave = (movieData) => {
-        const savePromise = movieData.id
-            ? movieService.updateMovie(movieData.id, movieData)
-            : movieService.createMovie(movieData);
+    const handleSave = (itemData) => {
+        const savePromise = itemData.id
+            ? service.update(itemData.id, itemData)
+            : service.create(itemData);
 
         savePromise
             .then(() => {
-                fetchMovies();
+                fetchData();
+                handleCloseFormModal();
             })
-            .catch(err => console.error("Failed to save movie:", err));
+            .catch(err => console.error(`Failed to save ${entityName}:`, err));
     };
 
     const handleDelete = () => {
-        if (selectedMovie) {
-            movieService.deleteMovie(selectedMovie.id)
+        if (selectedItem) {
+            service.remove(selectedItem.id)
                 .then(() => {
                     handleCloseDeleteModal();
-                    fetchMovies(); // Re-fetch data
+                    fetchData();
                 })
-                .catch(err => console.error("Failed to delete movie:", err));
+                .catch(err => console.error(`Failed to delete ${entityName}:`, err));
         }
     };
 
-    const filteredMovies = useMemo(() =>
-        movies.filter(movie =>
-            movie.title.toLowerCase().includes(searchTerm.toLowerCase())
-        ), [movies, searchTerm]);
+    const filteredData = useMemo(() => {
+        if (!data) return [];
+        // Assuming the primary searchable field is 'name' or 'title'
+        const searchableKey = columns.find(c => c.accessor === 'name' || c.accessor === 'title')?.accessor || 'id';
+        return data.filter(item =>
+            item[searchableKey]?.toString().toLowerCase().includes(searchTerm.toLowerCase())
+        );
+    }, [data, searchTerm, columns]);
 
-    const movieColumns = [
-        { header: 'ID', accessor: 'id' },
-        { header: 'Title', accessor: 'title' },
-        { header: 'Genre', accessor: 'genre' },
-        { header: 'Rating', accessor: 'rating' },
-        { header: 'Duration', accessor: 'duration' },
-        {
-            header: 'Release Date',
-            accessor: 'releaseDate',
-            cell: (value) => new Date(value).toLocaleDateString()
-        },
+
+    const tableColumns = [
+        ...columns,
         {
             header: 'Actions',
             accessor: 'id',
@@ -110,9 +111,9 @@ export const Movies = () => {
     return (
         <Container>
             <header className="d-flex justify-content-between align-items-center my-4">
-                <h2>Movies</h2>
+                <h2>{entityLabel}</h2>
                 <Button variant="primary" onClick={() => handleOpenFormModal()}>
-                    New Movie
+                    New {entityName}
                 </Button>
             </header>
 
@@ -121,7 +122,7 @@ export const Movies = () => {
                     <InputGroup>
                         <Form.Control
                             type="text"
-                            placeholder="Search by movie title"
+                            placeholder={`Search by ${entityName} name or title`}
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
@@ -132,22 +133,24 @@ export const Movies = () => {
             {loading && <p>Loading...</p>}
             {error && <p className="text-danger">{error}</p>}
             {!loading && !error && (
-                <GenericDataTable data={filteredMovies} columns={movieColumns} />
+                <GenericDataTable data={filteredData} columns={tableColumns} />
             )}
 
-            <MovieFormModal
-                show={showFormModal}
-                handleClose={handleCloseFormModal}
-                movie={selectedMovie}
-                onSave={handleSave}
-            />
+            {FormComponent && (
+                <FormComponent
+                    show={showFormModal}
+                    handleClose={handleCloseFormModal}
+                    entity={selectedItem}
+                    onSave={handleSave}
+                />
+            )}
 
             <Modal show={showDeleteModal} onHide={handleCloseDeleteModal}>
                 <Modal.Header closeButton>
                     <Modal.Title>Confirm Deletion</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    Are you sure you want to delete the movie: <strong>{selectedMovie?.title}</strong>?
+                    Are you sure you want to delete this {entityName}?
                     <p className="text-danger">This action cannot be undone.</p>
                 </Modal.Body>
                 <Modal.Footer>

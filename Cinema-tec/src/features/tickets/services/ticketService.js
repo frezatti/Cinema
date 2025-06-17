@@ -1,21 +1,21 @@
 import apiClient from "../../../api/apiController";
 
 export const getAll = () => {
-  return apiClient.get("/session");
+  return apiClient.get("/ticket");
 };
 
 export const getById = (id) => {
-  return apiClient.get(`/session/${id}`);
+  return apiClient.get(`/ticket/${id}`);
 };
 
 export const create = (data) => {
-  return apiClient.post("/session", data);
+  return apiClient.post("/ticket", data);
 };
 
 export const update = (id, data) => {
-  return apiClient.patch(`/session/${id}`, data);
+  return apiClient.patch(`/ticket/${id}`, data);
 };
 
 export const remove = (id) => {
-  return apiClient.delete(`/session/${id}`);
+  return apiClient.delete(`/ticket/${id}`);
 };
