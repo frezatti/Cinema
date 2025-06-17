@@ -4759,7 +4759,7 @@ export namespace Prisma {
     price: Decimal | null
     language: string | null
     format: string | null
-    dataTime: Date | null
+    dateTime: Date | null
     movieId: number | null
     theaterId: number | null
     updatedAt: Date | null
@@ -4770,7 +4770,7 @@ export namespace Prisma {
     price: Decimal | null
     language: string | null
     format: string | null
-    dataTime: Date | null
+    dateTime: Date | null
     movieId: number | null
     theaterId: number | null
     updatedAt: Date | null
@@ -4781,7 +4781,7 @@ export namespace Prisma {
     price: number
     language: number
     format: number
-    dataTime: number
+    dateTime: number
     movieId: number
     theaterId: number
     updatedAt: number
@@ -4808,7 +4808,7 @@ export namespace Prisma {
     price?: true
     language?: true
     format?: true
-    dataTime?: true
+    dateTime?: true
     movieId?: true
     theaterId?: true
     updatedAt?: true
@@ -4819,7 +4819,7 @@ export namespace Prisma {
     price?: true
     language?: true
     format?: true
-    dataTime?: true
+    dateTime?: true
     movieId?: true
     theaterId?: true
     updatedAt?: true
@@ -4830,7 +4830,7 @@ export namespace Prisma {
     price?: true
     language?: true
     format?: true
-    dataTime?: true
+    dateTime?: true
     movieId?: true
     theaterId?: true
     updatedAt?: true
@@ -4928,7 +4928,7 @@ export namespace Prisma {
     price: Decimal
     language: string
     format: string
-    dataTime: Date
+    dateTime: Date
     movieId: number
     theaterId: number
     updatedAt: Date
@@ -4958,7 +4958,7 @@ export namespace Prisma {
     price?: boolean
     language?: boolean
     format?: boolean
-    dataTime?: boolean
+    dateTime?: boolean
     movieId?: boolean
     theaterId?: boolean
     updatedAt?: boolean
@@ -4973,7 +4973,7 @@ export namespace Prisma {
     price?: boolean
     language?: boolean
     format?: boolean
-    dataTime?: boolean
+    dateTime?: boolean
     movieId?: boolean
     theaterId?: boolean
     updatedAt?: boolean
@@ -4986,7 +4986,7 @@ export namespace Prisma {
     price?: boolean
     language?: boolean
     format?: boolean
-    dataTime?: boolean
+    dateTime?: boolean
     movieId?: boolean
     theaterId?: boolean
     updatedAt?: boolean
@@ -4999,13 +4999,13 @@ export namespace Prisma {
     price?: boolean
     language?: boolean
     format?: boolean
-    dataTime?: boolean
+    dateTime?: boolean
     movieId?: boolean
     theaterId?: boolean
     updatedAt?: boolean
   }
 
-  export type SessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "price" | "language" | "format" | "dataTime" | "movieId" | "theaterId" | "updatedAt", ExtArgs["result"]["session"]>
+  export type SessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "price" | "language" | "format" | "dateTime" | "movieId" | "theaterId" | "updatedAt", ExtArgs["result"]["session"]>
   export type SessionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     movie?: boolean | MovieDefaultArgs<ExtArgs>
     theater?: boolean | TheaterDefaultArgs<ExtArgs>
@@ -5033,7 +5033,7 @@ export namespace Prisma {
       price: Prisma.Decimal
       language: string
       format: string
-      dataTime: Date
+      dateTime: Date
       movieId: number
       theaterId: number
       updatedAt: Date
@@ -5467,7 +5467,7 @@ export namespace Prisma {
     readonly price: FieldRef<"Session", 'Decimal'>
     readonly language: FieldRef<"Session", 'String'>
     readonly format: FieldRef<"Session", 'String'>
-    readonly dataTime: FieldRef<"Session", 'DateTime'>
+    readonly dateTime: FieldRef<"Session", 'DateTime'>
     readonly movieId: FieldRef<"Session", 'Int'>
     readonly theaterId: FieldRef<"Session", 'Int'>
     readonly updatedAt: FieldRef<"Session", 'DateTime'>
@@ -7131,7 +7131,7 @@ export namespace Prisma {
     price: 'price',
     language: 'language',
     format: 'format',
-    dataTime: 'dataTime',
+    dateTime: 'dateTime',
     movieId: 'movieId',
     theaterId: 'theaterId',
     updatedAt: 'updatedAt'
@@ -7455,7 +7455,7 @@ export namespace Prisma {
     price?: DecimalFilter<"Session"> | Decimal | DecimalJsLike | number | string
     language?: StringFilter<"Session"> | string
     format?: StringFilter<"Session"> | string
-    dataTime?: DateTimeFilter<"Session"> | Date | string
+    dateTime?: DateTimeFilter<"Session"> | Date | string
     movieId?: IntFilter<"Session"> | number
     theaterId?: IntFilter<"Session"> | number
     updatedAt?: DateTimeFilter<"Session"> | Date | string
@@ -7469,7 +7469,7 @@ export namespace Prisma {
     price?: SortOrder
     language?: SortOrder
     format?: SortOrder
-    dataTime?: SortOrder
+    dateTime?: SortOrder
     movieId?: SortOrder
     theaterId?: SortOrder
     updatedAt?: SortOrder
@@ -7486,7 +7486,7 @@ export namespace Prisma {
     price?: DecimalFilter<"Session"> | Decimal | DecimalJsLike | number | string
     language?: StringFilter<"Session"> | string
     format?: StringFilter<"Session"> | string
-    dataTime?: DateTimeFilter<"Session"> | Date | string
+    dateTime?: DateTimeFilter<"Session"> | Date | string
     movieId?: IntFilter<"Session"> | number
     theaterId?: IntFilter<"Session"> | number
     updatedAt?: DateTimeFilter<"Session"> | Date | string
@@ -7500,7 +7500,7 @@ export namespace Prisma {
     price?: SortOrder
     language?: SortOrder
     format?: SortOrder
-    dataTime?: SortOrder
+    dateTime?: SortOrder
     movieId?: SortOrder
     theaterId?: SortOrder
     updatedAt?: SortOrder
@@ -7519,7 +7519,7 @@ export namespace Prisma {
     price?: DecimalWithAggregatesFilter<"Session"> | Decimal | DecimalJsLike | number | string
     language?: StringWithAggregatesFilter<"Session"> | string
     format?: StringWithAggregatesFilter<"Session"> | string
-    dataTime?: DateTimeWithAggregatesFilter<"Session"> | Date | string
+    dateTime?: DateTimeWithAggregatesFilter<"Session"> | Date | string
     movieId?: IntWithAggregatesFilter<"Session"> | number
     theaterId?: IntWithAggregatesFilter<"Session"> | number
     updatedAt?: DateTimeWithAggregatesFilter<"Session"> | Date | string
@@ -7803,7 +7803,7 @@ export namespace Prisma {
     price: Decimal | DecimalJsLike | number | string
     language: string
     format: string
-    dataTime: Date | string
+    dateTime: Date | string
     updatedAt?: Date | string
     movie: MovieCreateNestedOneWithoutSessionInput
     theater: TheaterCreateNestedOneWithoutSessionInput
@@ -7815,7 +7815,7 @@ export namespace Prisma {
     price: Decimal | DecimalJsLike | number | string
     language: string
     format: string
-    dataTime: Date | string
+    dateTime: Date | string
     movieId: number
     theaterId: number
     updatedAt?: Date | string
@@ -7826,7 +7826,7 @@ export namespace Prisma {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     language?: StringFieldUpdateOperationsInput | string
     format?: StringFieldUpdateOperationsInput | string
-    dataTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateTime?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     movie?: MovieUpdateOneRequiredWithoutSessionNestedInput
     theater?: TheaterUpdateOneRequiredWithoutSessionNestedInput
@@ -7838,7 +7838,7 @@ export namespace Prisma {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     language?: StringFieldUpdateOperationsInput | string
     format?: StringFieldUpdateOperationsInput | string
-    dataTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateTime?: DateTimeFieldUpdateOperationsInput | Date | string
     movieId?: IntFieldUpdateOperationsInput | number
     theaterId?: IntFieldUpdateOperationsInput | number
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7850,7 +7850,7 @@ export namespace Prisma {
     price: Decimal | DecimalJsLike | number | string
     language: string
     format: string
-    dataTime: Date | string
+    dateTime: Date | string
     movieId: number
     theaterId: number
     updatedAt?: Date | string
@@ -7860,7 +7860,7 @@ export namespace Prisma {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     language?: StringFieldUpdateOperationsInput | string
     format?: StringFieldUpdateOperationsInput | string
-    dataTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateTime?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -7869,7 +7869,7 @@ export namespace Prisma {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     language?: StringFieldUpdateOperationsInput | string
     format?: StringFieldUpdateOperationsInput | string
-    dataTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateTime?: DateTimeFieldUpdateOperationsInput | Date | string
     movieId?: IntFieldUpdateOperationsInput | number
     theaterId?: IntFieldUpdateOperationsInput | number
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8228,7 +8228,7 @@ export namespace Prisma {
     price?: SortOrder
     language?: SortOrder
     format?: SortOrder
-    dataTime?: SortOrder
+    dateTime?: SortOrder
     movieId?: SortOrder
     theaterId?: SortOrder
     updatedAt?: SortOrder
@@ -8246,7 +8246,7 @@ export namespace Prisma {
     price?: SortOrder
     language?: SortOrder
     format?: SortOrder
-    dataTime?: SortOrder
+    dateTime?: SortOrder
     movieId?: SortOrder
     theaterId?: SortOrder
     updatedAt?: SortOrder
@@ -8257,7 +8257,7 @@ export namespace Prisma {
     price?: SortOrder
     language?: SortOrder
     format?: SortOrder
-    dataTime?: SortOrder
+    dateTime?: SortOrder
     movieId?: SortOrder
     theaterId?: SortOrder
     updatedAt?: SortOrder
@@ -8883,7 +8883,7 @@ export namespace Prisma {
     price: Decimal | DecimalJsLike | number | string
     language: string
     format: string
-    dataTime: Date | string
+    dateTime: Date | string
     updatedAt?: Date | string
     theater: TheaterCreateNestedOneWithoutSessionInput
     Ticket?: TicketCreateNestedManyWithoutSessionInput
@@ -8894,7 +8894,7 @@ export namespace Prisma {
     price: Decimal | DecimalJsLike | number | string
     language: string
     format: string
-    dataTime: Date | string
+    dateTime: Date | string
     theaterId: number
     updatedAt?: Date | string
     Ticket?: TicketUncheckedCreateNestedManyWithoutSessionInput
@@ -8934,7 +8934,7 @@ export namespace Prisma {
     price?: DecimalFilter<"Session"> | Decimal | DecimalJsLike | number | string
     language?: StringFilter<"Session"> | string
     format?: StringFilter<"Session"> | string
-    dataTime?: DateTimeFilter<"Session"> | Date | string
+    dateTime?: DateTimeFilter<"Session"> | Date | string
     movieId?: IntFilter<"Session"> | number
     theaterId?: IntFilter<"Session"> | number
     updatedAt?: DateTimeFilter<"Session"> | Date | string
@@ -8944,7 +8944,7 @@ export namespace Prisma {
     price: Decimal | DecimalJsLike | number | string
     language: string
     format: string
-    dataTime: Date | string
+    dateTime: Date | string
     updatedAt?: Date | string
     movie: MovieCreateNestedOneWithoutSessionInput
     Ticket?: TicketCreateNestedManyWithoutSessionInput
@@ -8955,7 +8955,7 @@ export namespace Prisma {
     price: Decimal | DecimalJsLike | number | string
     language: string
     format: string
-    dataTime: Date | string
+    dateTime: Date | string
     movieId: number
     updatedAt?: Date | string
     Ticket?: TicketUncheckedCreateNestedManyWithoutSessionInput
@@ -9140,7 +9140,7 @@ export namespace Prisma {
     price: Decimal | DecimalJsLike | number | string
     language: string
     format: string
-    dataTime: Date | string
+    dateTime: Date | string
     updatedAt?: Date | string
     movie: MovieCreateNestedOneWithoutSessionInput
     theater: TheaterCreateNestedOneWithoutSessionInput
@@ -9151,7 +9151,7 @@ export namespace Prisma {
     price: Decimal | DecimalJsLike | number | string
     language: string
     format: string
-    dataTime: Date | string
+    dateTime: Date | string
     movieId: number
     theaterId: number
     updatedAt?: Date | string
@@ -9199,7 +9199,7 @@ export namespace Prisma {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     language?: StringFieldUpdateOperationsInput | string
     format?: StringFieldUpdateOperationsInput | string
-    dataTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateTime?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     movie?: MovieUpdateOneRequiredWithoutSessionNestedInput
     theater?: TheaterUpdateOneRequiredWithoutSessionNestedInput
@@ -9210,7 +9210,7 @@ export namespace Prisma {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     language?: StringFieldUpdateOperationsInput | string
     format?: StringFieldUpdateOperationsInput | string
-    dataTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateTime?: DateTimeFieldUpdateOperationsInput | Date | string
     movieId?: IntFieldUpdateOperationsInput | number
     theaterId?: IntFieldUpdateOperationsInput | number
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9288,7 +9288,7 @@ export namespace Prisma {
     price: Decimal | DecimalJsLike | number | string
     language: string
     format: string
-    dataTime: Date | string
+    dateTime: Date | string
     theaterId: number
     updatedAt?: Date | string
   }
@@ -9297,7 +9297,7 @@ export namespace Prisma {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     language?: StringFieldUpdateOperationsInput | string
     format?: StringFieldUpdateOperationsInput | string
-    dataTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateTime?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     theater?: TheaterUpdateOneRequiredWithoutSessionNestedInput
     Ticket?: TicketUpdateManyWithoutSessionNestedInput
@@ -9308,7 +9308,7 @@ export namespace Prisma {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     language?: StringFieldUpdateOperationsInput | string
     format?: StringFieldUpdateOperationsInput | string
-    dataTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateTime?: DateTimeFieldUpdateOperationsInput | Date | string
     theaterId?: IntFieldUpdateOperationsInput | number
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Ticket?: TicketUncheckedUpdateManyWithoutSessionNestedInput
@@ -9319,7 +9319,7 @@ export namespace Prisma {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     language?: StringFieldUpdateOperationsInput | string
     format?: StringFieldUpdateOperationsInput | string
-    dataTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateTime?: DateTimeFieldUpdateOperationsInput | Date | string
     theaterId?: IntFieldUpdateOperationsInput | number
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -9329,7 +9329,7 @@ export namespace Prisma {
     price: Decimal | DecimalJsLike | number | string
     language: string
     format: string
-    dataTime: Date | string
+    dateTime: Date | string
     movieId: number
     updatedAt?: Date | string
   }
@@ -9338,7 +9338,7 @@ export namespace Prisma {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     language?: StringFieldUpdateOperationsInput | string
     format?: StringFieldUpdateOperationsInput | string
-    dataTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateTime?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     movie?: MovieUpdateOneRequiredWithoutSessionNestedInput
     Ticket?: TicketUpdateManyWithoutSessionNestedInput
@@ -9349,7 +9349,7 @@ export namespace Prisma {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     language?: StringFieldUpdateOperationsInput | string
     format?: StringFieldUpdateOperationsInput | string
-    dataTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateTime?: DateTimeFieldUpdateOperationsInput | Date | string
     movieId?: IntFieldUpdateOperationsInput | number
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Ticket?: TicketUncheckedUpdateManyWithoutSessionNestedInput
@@ -9360,7 +9360,7 @@ export namespace Prisma {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     language?: StringFieldUpdateOperationsInput | string
     format?: StringFieldUpdateOperationsInput | string
-    dataTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    dateTime?: DateTimeFieldUpdateOperationsInput | Date | string
     movieId?: IntFieldUpdateOperationsInput | number
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

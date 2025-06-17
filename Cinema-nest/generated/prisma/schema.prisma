@@ -50,7 +50,7 @@ model Session {
   price    Decimal
   language String
   format   String
-  dataTime DateTime
+  dateTime DateTime
 
   movieId Int
   movie   Movie @relation(fields: [movieId], references: [id])

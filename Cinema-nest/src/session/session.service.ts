@@ -9,7 +9,6 @@ export class SessionService {
   constructor(private readonly prisma: PrismaService) {}
 
   async create(createSessionDto: CreateSessionDto): Promise<Session> {
-    // Verify if the related movie and theater exist before creating the session
     await this.prisma.movie.findUniqueOrThrow({
       where: { id: createSessionDto.movieId },
     });
@@ -23,7 +22,6 @@ export class SessionService {
   }
 
   findAll(): Promise<Session[]> {
-    // Include the related movie and theater data in the response
     return this.prisma.session.findMany({
       include: {
         movie: true,
@@ -52,10 +50,8 @@ export class SessionService {
     id: number,
     updateSessionDto: UpdateSessionDto,
   ): Promise<Session> {
-    // First, ensure the session we want to update exists
     await this.findOne(id);
 
-    // Optionally, verify the new foreign keys if they are being changed
     if (updateSessionDto.movieId) {
       await this.prisma.movie.findUniqueOrThrow({
         where: { id: updateSessionDto.movieId },

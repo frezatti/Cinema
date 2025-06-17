@@ -153,7 +153,7 @@ exports.Prisma.SessionScalarFieldEnum = {
   price: 'price',
   language: 'language',
   format: 'format',
-  dataTime: 'dataTime',
+  dateTime: 'dateTime',
   movieId: 'movieId',
   theaterId: 'theaterId',
   updatedAt: 'updatedAt'
