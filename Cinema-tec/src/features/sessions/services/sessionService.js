@@ -1,5 +1,5 @@
 import apiClient from "../../../api/apiClient";
 
 export const getAllSessions = () => {
-  return apiClient.get("/sessions");
+  return apiClient.get("/session");
 };

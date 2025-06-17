@@ -4,7 +4,7 @@ import { Container, Button, Modal, InputGroup, Form } from 'react-bootstrap';
 import { GenericDataTable } from '../../../components/GenericDataTable';
 import { MovieFormModal } from '../components/MovieFormModal';
 
-export const MoviesPage = () => {
+export const Movies = () => {
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);

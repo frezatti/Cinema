@@ -1,11 +1,11 @@
-import Movies from "./pages/movies";
+import { Movies } from "./pages/MoviesPage";
 
 function MoviesPage() {
-	return (
-		<>
-			<Movies />
-		</>
-	);
+    return (
+        <>
+            <Movies />
+        </>
+    );
 }
 
 export default MoviesPage;
