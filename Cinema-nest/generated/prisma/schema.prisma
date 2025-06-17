@@ -1,0 +1,82 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  name      String?
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Ticket    Ticket[]
+
+  @@map("users")
+}
+
+model Movie {
+  id          Int       @id @default(autoincrement())
+  title       String
+  genre       String
+  rating      String
+  duration    Int
+  releaseDate DateTime
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  Session     Session[]
+
+  @@map("movies")
+}
+
+model Theater {
+  id        Int       @id @default(autoincrement())
+  name      String    @unique
+  capacity  Int
+  type      String
+  updatedAt DateTime  @updatedAt
+  Session   Session[]
+
+  @@map("theater")
+}
+
+model Session {
+  id       Int      @id @default(autoincrement())
+  price    Decimal
+  language String
+  format   String
+  dataTime DateTime
+
+  movieId Int
+  movie   Movie @relation(fields: [movieId], references: [id])
+
+  theaterId Int
+  theater   Theater @relation(fields: [theaterId], references: [id])
+
+  updatedAt DateTime @updatedAt
+  Ticket    Ticket[]
+
+  @@map("session")
+}
+
+model Ticket {
+  id           Int      @id @default(autoincrement())
+  customerName String
+  cpf          String?  @unique
+  seat         String
+  paymentType  String
+  purchaseDate DateTime @default(now())
+
+  sessionId Int
+  session   Session @relation(fields: [sessionId], references: [id])
+
+  userId Int?
+  user   User? @relation(fields: [userId], references: [id])
+
+  @@map("ticket")
+}
