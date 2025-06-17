@@ -29,7 +29,7 @@ export class UserService {
       where: { id },
     });
     if (!user) {
-      throw new NotFoundException(`User with Id: {id} was not found`);
+      throw new NotFoundException(`User with Id: ${id} was not found: 404`);
     }
     return user;
   }

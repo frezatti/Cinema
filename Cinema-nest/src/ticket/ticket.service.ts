@@ -60,7 +60,7 @@ export class TicketService {
   }
 
   async update(id: number, updateTicketDto: UpdateTicketDto): Promise<Ticket> {
-    await this.findOne(id); // Ensure the ticket exists
+    await this.findOne(id);
 
     return this.prisma.ticket.update({
       where: { id },

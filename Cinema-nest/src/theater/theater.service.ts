@@ -24,7 +24,7 @@ export class TheaterService {
     });
 
     if (!theater) {
-      throw new NotFoundException(`Theater with Id: {id}, not found 404`);
+      throw new NotFoundException(`Theater with Id: ${id}, not found 404`);
     }
     return theater;
   }
