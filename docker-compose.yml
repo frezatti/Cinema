@@ -1,11 +1,11 @@
 services:
-frontend:
+  frontend:
     container_name: cinema-frontend
     build:
       context: ./Cinema-tec
       dockerfile: Dockerfile
     restart: unless-stopped
-    command: serve -s build -l 3000 -r .
+    command: serve -s build -l 3000
     depends_on:
       - backend
     networks:
