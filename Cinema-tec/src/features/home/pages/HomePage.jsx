@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import * as movieService from '../features/movies/services/movieService';
-import * as sessionService from '../features/sessions/services/sessionService';
-import * as theaterService from '../features/theaters/services/theaterService';
-import { MovieSessionCard } from '../features/movies/components/MovieSessionCard';
+import * as movieService from './../../movies/services/movieService';
+import * as sessionService from './../../sessions/services/sessionService'
+import * as theaterService from './../../theaters/services/theaterService';
+import { MovieSessionCard } from './../../movies/components/MovieSessionCard';
 
 export const HomePage = () => {
     const [movies, setMovies] = useState([]);
