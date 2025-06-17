@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
-import * as movieService from '../../movies/services/movieService';
-import * as theaterService from '../../theater/services/theaterService';
+import * as movieService from '@/features/movies/services/movieService';
+import * as theaterService from '@/features/theater/services/theaterService';
 
 export const SessionModal = ({ show, handleClose, entity, onSave }) => {
     const [formData, setFormData] = useState({});

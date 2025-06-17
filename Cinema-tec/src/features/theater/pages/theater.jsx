@@ -1,7 +1,7 @@
 import React from 'react';
-import { EntityPage } from '../../../components/EntityPage';
-import * as theaterService from '../services/theaterService';
-import { TheaterModal } from '../components/theaterModal';
+import { EntityPage } from '@/components/entityPage';
+import * as theaterService from '@/features/theater/services/theaterService';
+import { TheaterModal } from '@/features/theater/components/theaterModal';
 
 export const Theaters = () => {
 

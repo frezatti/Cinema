@@ -1,7 +1,7 @@
 import React from 'react';
 import { EntityPage } from '@/components/entityPage';
-import * as sessionService from '../services/sessionService';
-import { SessionModal } from '../components/sessionModal';
+import * as sessionService from '@/features/sessions/services/sessionService';
+import { SessionModal } from '@/features/sessions/components/sessionModal';
 
 export const Sessions = () => {
 

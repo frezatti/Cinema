@@ -1,4 +1,4 @@
-import apiClient from "../../../api/apiController";
+import apiClient from "@/api/apiController";
 
 export const getAll = () => {
   return apiClient.get("/ticket");

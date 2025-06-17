@@ -1,7 +1,7 @@
 import React from 'react';
 import { EntityPage } from '@/components/entityPage';
-import * as movieService from '../services/movieService';
-import { MovieFormModal } from '../components/movieModal'; // Corrected import name
+import * as movieService from '@/features/movies/services/movieService';
+import { MovieFormModal } from '@/features/movies/components/movieModal';
 
 export const Movies = () => {
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Container, Button, Modal, InputGroup, Form } from 'react-bootstrap';
-import { GenericDataTable } from './datatable';
+import { GenericDataTable } from '@/components/datatable';
 
 export const EntityPage = ({
     entityName,

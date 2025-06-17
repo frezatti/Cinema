@@ -1,4 +1,4 @@
-import apiClient from "../../../api/apiClient";
+import apiClient from "@/api/apiController";
 
 export const getAllMovies = () => {
   return apiClient.get("/movies");

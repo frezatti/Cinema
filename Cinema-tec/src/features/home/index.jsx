@@ -1,11 +1,11 @@
-import Home from "./pages/home";
+import { Home } from "./pages/HomePage";
 
 function HomePage() {
-	return (
-		<>
-			<Home />
-		</>
-	);
+    return (
+        <>
+            <Home />
+        </>
+    );
 }
 
 export default HomePage;

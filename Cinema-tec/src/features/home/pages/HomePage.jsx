@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import * as movieService from './../../movies/services/movieService';
-import * as sessionService from './../../sessions/services/sessionService'
-import * as theaterService from './../../theaters/services/theaterService';
-import { MovieSessionCard } from './../../movies/components/MovieSessionCard';
+import * as movieService from '@/features/movies/services/movieService';
+import * as sessionService from '@/features/sessions/services/sessionService'
+import * as theaterService from '@/features/theater/services/theaterService';
+import { MovieSessionCard } from '@/features/movies/components/MovieSessionCard';
 
-export const HomePage = () => {
+export const Home = () => {
     const [movies, setMovies] = useState([]);
     const [sessions, setSessions] = useState([]);
     const [theaters, setTheaters] = useState([]);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
-import * as sessionService from '../../sessions/services/sessionService';
+import * as sessionService from '@/features/sessions/services/sessionService';
 
 export const TicketModal = ({ show, handleClose, entity, onSave }) => {
     const [formData, setFormData] = useState({});

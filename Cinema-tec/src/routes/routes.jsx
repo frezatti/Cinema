@@ -1,10 +1,10 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Layout } from "../layouts/layout";
-import { Home } from "../features/home/pages/HomePage";
-import { Movies } from "../features/movies/pages/movies";
-import { Theaters } from "../features/theater/pages/theater";
-import { Sessions } from "../features/sessions/pages/session";
-import { Tickets } from "../features/tickets/pages/tickets";
+import Layout from "@/layouts/layout";
+import HomePage from "@/features/home";
+import MoviesPage from "@/features/movies";
+import SessionPage from "@/features/sessions";
+import TheaterPage from "@/features/theater";
+import TicketsPage from "@/features/tickets";
 
 const router = createBrowserRouter([
     {
@@ -13,23 +13,23 @@ const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                Component: Home,
+                Component: HomePage,
             },
             {
                 path: "movies",
-                Component: Movies,
+                Component: MoviesPage,
             },
             {
                 path: "theaters",
-                Component: Theaters,
+                Component: TheaterPage,
             },
             {
                 path: "sessions",
-                Component: Sessions,
+                Component: SessionPage,
             },
             {
                 path: "tickets",
-                Component: Tickets,
+                Component: TicketsPage,
             }
         ],
     },

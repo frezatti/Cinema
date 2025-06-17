@@ -1,7 +1,7 @@
 import React from 'react';
-import { EntityPage } from '../../../components/EntityPage';
-import * as ticketService from '../services/ticketService';
-import { TicketModal } from '../components/ticketModal';
+import { EntityPage } from '@/components/entityPage';
+import * as ticketService from '@/features/tickets/services/ticketService';
+import { TicketModal } from '@/features/tickets/components/ticketModal';
 
 export const Tickets = () => {
 
