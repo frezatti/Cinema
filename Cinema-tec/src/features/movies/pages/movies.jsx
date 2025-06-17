@@ -1,5 +1,5 @@
 import React from 'react';
-import { EntityPage } from '../../../components/EntityPage';
+import { EntityPage } from '@/components/entityPage';
 import * as movieService from '../services/movieService';
 import { MovieFormModal } from '../components/movieModal'; // Corrected import name
 

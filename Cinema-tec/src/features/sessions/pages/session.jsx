@@ -1,5 +1,5 @@
 import React from 'react';
-import { EntityPage } from '../../../components/EntityPage';
+import { EntityPage } from '@/components/entityPage';
 import * as sessionService from '../services/sessionService';
 import { SessionModal } from '../components/sessionModal';
 
