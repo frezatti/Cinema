@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import * as movieService from '@/features/movies/services/movieService';
-import * as sessionService from '@/features/sessions/services/sessionService'
+import * as sessionService from '@/features/sessions/services/sessionService';
 import * as theaterService from '@/features/theater/services/theaterService';
 import { MovieSessionCard } from '@/features/movies/components/MovieSessionCard';
 
@@ -16,10 +16,11 @@ export const Home = () => {
         const fetchAllData = async () => {
             try {
                 setLoading(true);
+                // Corrected function calls to use getAll() as exported from the services
                 const [moviesRes, sessionsRes, theatersRes] = await Promise.all([
                     movieService.getAllMovies(),
-                    sessionService.getAllSessions(),
-                    theaterService.getAllTheaters()
+                    sessionService.getAll(),
+                    theaterService.getAll()
                 ]);
                 setMovies(moviesRes.data);
                 setSessions(sessionsRes.data);

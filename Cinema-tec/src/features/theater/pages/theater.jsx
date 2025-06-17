@@ -3,7 +3,7 @@ import { EntityPage } from '@/components/entityPage';
 import * as theaterService from '@/features/theater/services/theaterService';
 import { TheaterModal } from '@/features/theater/components/theaterModal';
 
-export const Theaters = () => {
+export const Theater = () => {
 
     const theaterColumns = [
         { header: 'ID', accessor: 'id' },

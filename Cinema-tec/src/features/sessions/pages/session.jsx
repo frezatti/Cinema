@@ -3,7 +3,7 @@ import { EntityPage } from '@/components/entityPage';
 import * as sessionService from '@/features/sessions/services/sessionService';
 import { SessionModal } from '@/features/sessions/components/sessionModal';
 
-export const Sessions = () => {
+export const Session = () => {
 
     const sessionColumns = [
         { header: 'ID', accessor: 'id' },

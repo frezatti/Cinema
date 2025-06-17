@@ -1,4 +1,4 @@
-import Theater from "./pages/theater";
+import { Theater } from "./pages/theater";
 
 function TheaterPage() {
     return (
@@ -8,4 +8,4 @@ function TheaterPage() {
     );
 }
 
-export default TheaterPage
+export default TheaterPage;

@@ -1,4 +1,4 @@
-import Session from "./pages/session";
+import { Session } from "./pages/session";
 
 
 function SessionPage() {
@@ -9,4 +9,4 @@ function SessionPage() {
     );
 }
 
-export default SessionPage
+export default SessionPage;

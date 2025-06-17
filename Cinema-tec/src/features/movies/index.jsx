@@ -1,9 +1,9 @@
-import { Movies } from "./pages/movies.jsx";
+import { Movie } from "./pages/movies.jsx";
 
 function MoviesPage() {
     return (
         <>
-            <Movies />
+            <Movie />
         </>
     );
 }

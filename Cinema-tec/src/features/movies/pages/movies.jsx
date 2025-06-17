@@ -3,7 +3,7 @@ import { EntityPage } from '@/components/entityPage';
 import * as movieService from '@/features/movies/services/movieService';
 import { MovieFormModal } from '@/features/movies/components/movieModal';
 
-export const Movies = () => {
+export const Movie = () => {
 
     const movieColumns = [
         { header: 'ID', accessor: 'id' },

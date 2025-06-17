@@ -3,7 +3,7 @@ import { EntityPage } from '@/components/entityPage';
 import * as ticketService from '@/features/tickets/services/ticketService';
 import { TicketModal } from '@/features/tickets/components/ticketModal';
 
-export const Tickets = () => {
+export const Ticket = () => {
 
     const ticketColumns = [
         { header: 'ID', accessor: 'id' },
