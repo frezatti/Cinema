@@ -1,41 +1,33 @@
 import apiClient from "@/api/apiController";
 
-export const getAll = () => {
-  return apiClient.get("/theater");
+export const getAllTheaters = async () => {
+  const { data } = await apiClient.get("/theater");
+  return data;
 };
 
-export const getById = (id) => {
-  return apiClient.get(`/theater/${id}`);
+export const getTheaterById = async (id) => {
+  const { data } = await apiClient.get(`/theater/${id}`);
+  return data;
 };
 
-export const create = (data) => {
-  return apiClient.post("/theater", data);
+export const createTheater = async (theaterData) => {
+  const { data } = await apiClient.post("/theater", theaterData);
+  return data;
 };
 
-export const update = (id, data) => {
-  return apiClient.patch(`/theater/${id}`, data);
+export const updateTheater = async (id, theaterData) => {
+  const { id: _ignoreId, createdAt, updatedAt, ...payload } = theaterData;
+  const { data } = await apiClient.patch(`/theater/${id}`, payload);
+  return data;
 };
 
-export const remove = (id) => {
-  return apiClient.delete(`/theater/${id}`);
+export const deleteTheater = async (id) => {
+  const { data } = await apiClient.delete(`/theater/${id}`);
+  return data;
 };
 
-export const getAllTheaters = () => {
-  return apiClient.get("/theater");
-};
-
-export const getTheaterById = (id) => {
-  return apiClient.get(`/theater/${id}`);
-};
-
-export const createTheater = (data) => {
-  return apiClient.post("/theater", data);
-};
-
-export const updateTheater = (id, data) => {
-  return apiClient.patch(`/theater/${id}`, data);
-};
-
-export const removeTheater = (id) => {
-  return apiClient.delete(`/theater/${id}`);
-};
+export const getAll = getAllTheaters;
+export const getById = getTheaterById;
+export const create = createTheater;
+export const update = updateTheater;
+export const remove = deleteTheater;

@@ -27,18 +27,31 @@ const Home = () => {
         const fetchAllData = async () => {
             try {
                 setLoading(true);
+                setError(null);
+
                 const [moviesData, sessionsData, theatersData] = await Promise.all([
                     getAllMovies(),
                     getAllSessions(),
                     getAllTheaters(),
                 ]);
-                setMovies(moviesData);
+
+                // Normalize movie data to handle both English and Portuguese properties
+                const normalizedMovies = moviesData.map((movie) => ({
+                    id: movie.id,
+                    titulo: movie.titulo || movie.title || "",
+                    descricao: movie.descricao || movie.description || "",
+                    imagem: movie.imagem || movie.poster || "",
+                    // Keep original properties for compatibility
+                    ...movie,
+                }));
+
+                setMovies(normalizedMovies);
                 setSessions(sessionsData);
                 setTheaters(theatersData);
-                setError(null);
             } catch (err) {
+                console.error("Error fetching data:", err);
                 setError(
-                    err.message || "Ocorreu um erro ao buscar os dados da página.",
+                    err.message || "Ocorreu um erro ao buscar os dados da página."
                 );
             } finally {
                 setLoading(false);
@@ -49,11 +62,33 @@ const Home = () => {
     }, []);
 
     if (loading) {
-        return <p className="text-center mt-5">Carregando filmes e sessões...</p>;
+        return (
+            <div className="container mt-4">
+                <div className="text-center">
+                    <div className="spinner-border" role="status">
+                        <span className="visually-hidden">Carregando...</span>
+                    </div>
+                    <p className="mt-2">Carregando filmes e sessões...</p>
+                </div>
+            </div>
+        );
     }
 
     if (error) {
-        return <p className="text-center mt-5 text-danger">{error}</p>;
+        return (
+            <div className="container mt-4">
+                <div className="alert alert-danger text-center" role="alert">
+                    <h4 className="alert-heading">Erro!</h4>
+                    <p>{error}</p>
+                    <button
+                        className="btn btn-outline-danger"
+                        onClick={() => window.location.reload()}
+                    >
+                        Tentar Novamente
+                    </button>
+                </div>
+            </div>
+        );
     }
 
     return (
@@ -63,7 +98,9 @@ const Home = () => {
                 {movies.length > 0 ? (
                     movies.map((movie) => {
                         const movieSessions = sessions.filter(
-                            (session) => session.filmeId === movie.id,
+                            (session) =>
+                                String(session.filmeId) === String(movie.id) ||
+                                String(session.movieId) === String(movie.id)
                         );
                         return (
                             <div key={movie.id} className="col-12 col-md-6 col-lg-4">
@@ -77,7 +114,12 @@ const Home = () => {
                         );
                     })
                 ) : (
-                    <p className="text-center">Nenhum filme em exibição no momento.</p>
+                    <div className="col-12">
+                        <div className="alert alert-info text-center">
+                            <h4>Nenhum filme em exibição</h4>
+                            <p>Não há filmes disponíveis no momento.</p>
+                        </div>
+                    </div>
                 )}
             </div>
 

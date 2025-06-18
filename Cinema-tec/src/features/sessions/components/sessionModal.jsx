@@ -9,8 +9,8 @@ export const SessionModal = ({ show, handleClose, entity, onSave }) => {
     const [theaters, setTheaters] = useState([]);
 
     useEffect(() => {
-        movieService.getAllMovies().then(res => setMovies(res.data));
-        theaterService.getAll().then(res => setTheaters(res.data));
+        movieService.getAllMovies().then(setMovies);
+        theaterService.getAll().then(setTheaters);
 
         const initialData = entity || {
             language: 'Dublado',

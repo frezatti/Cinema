@@ -18,18 +18,18 @@ export const EntityPage = ({
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
 
-    const fetchData = () => {
-        setLoading(true);
-        service.getAll()
-            .then(response => {
-                setData(response.data);
-                setError(null);
-            })
-            .catch(error => {
-                console.error(`Failed to fetch ${entityLabel}:`, error);
-                setError(`Could not load ${entityLabel} data.`);
-            })
-            .finally(() => setLoading(false));
+    const fetchData = async () => {
+        try {
+            setLoading(true);
+            const data = await service.getAll();
+            setData(data);
+            setError(null);
+        } catch (error) {
+            console.error(`Failed to fetch ${entityLabel}:`, error);
+            setError(`Could not load ${entityLabel} data.`);
+        } finally {
+            setLoading(false);
+        }
     };
 
     useEffect(() => {

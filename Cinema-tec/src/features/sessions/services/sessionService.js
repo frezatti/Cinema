@@ -1,40 +1,33 @@
 import apiClient from "@/api/apiController";
 
-export const getAll = () => {
-  return apiClient.get("/session");
+export const getAllSessions = async () => {
+  const { data } = await apiClient.get("/session");
+  return data;
 };
 
-export const getById = (id) => {
-  return apiClient.get(`/session/${id}`);
+export const getSessionById = async (id) => {
+  const { data } = await apiClient.get(`/session/${id}`);
+  return data;
 };
 
-export const create = (data) => {
-  return apiClient.post("/session", data);
+export const createSession = async (sessionData) => {
+  const { data } = await apiClient.post("/session", sessionData);
+  return data;
 };
 
-export const update = (id, data) => {
-  return apiClient.patch(`/session/${id}`, data);
+export const updateSession = async (id, sessionData) => {
+  const { id: _ignoreId, createdAt, updatedAt, ...payload } = sessionData;
+  const { data } = await apiClient.patch(`/session/${id}`, payload);
+  return data;
 };
 
-export const remove = (id) => {
-  return apiClient.delete(`/session/${id}`);
-};
-export const getAllSessions = () => {
-  return apiClient.get("/session");
+export const deleteSession = async (id) => {
+  const { data } = await apiClient.delete(`/session/${id}`);
+  return data;
 };
 
-export const getSessionById = (id) => {
-  return apiClient.get(`/session/${id}`);
-};
-
-export const createSession = (data) => {
-  return apiClient.post("/session", data);
-};
-
-export const updateSession = (id, data) => {
-  return apiClient.patch(`/session/${id}`, data);
-};
-
-export const removeSession = (id) => {
-  return apiClient.delete(`/session/${id}`);
-};
+export const getAll = getAllSessions;
+export const getById = getSessionById;
+export const create = createSession;
+export const update = updateSession;
+export const remove = deleteSession;

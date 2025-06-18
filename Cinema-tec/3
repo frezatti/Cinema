@@ -16,8 +16,7 @@ export const createMovie = async (movieData) => {
 };
 
 export const updateMovie = async (id, movieData) => {
-  const { id: _ignoreId, createdAt, updatedAt, ...payload } = movieData;
-  if (!payload.poster) delete payload.poster;
+  const { id: _ignore, createdAt, updatedAt, ...payload } = movieData;
   const { data } = await apiClient.patch(`/movies/${id}`, payload);
   return data;
 };
@@ -26,9 +25,3 @@ export const deleteMovie = async (id) => {
   const { data } = await apiClient.delete(`/movies/${id}`);
   return data;
 };
-
-export const getAll = getAllMovies;
-export const getById = getMovieById;
-export const create = createMovie;
-export const update = updateMovie;
-export const remove = deleteMovie;
