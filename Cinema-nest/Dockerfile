@@ -1,21 +1,22 @@
 FROM node:lts-alpine
 
+ARG PORT                      
+ENV PORT=$PORT
+
 WORKDIR /app
 
-ARG PORT
-
-ENV PORT=${PORT}
-
 COPY package*.json ./
-RUN npm install
+RUN npm ci --omit=dev
 
-COPY prisma ./prisma/
+COPY prisma ./prisma
 RUN npx prisma generate
 
-COPY . .
+COPY tsconfig*.json ./
+COPY src ./src
+RUN npm run build                
 
-RUN npm run build
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
-EXPOSE ${PORT}
-
-CMD ["sh", "-c", "npx prisma migrate dev && npm run start:dev"]
+EXPOSE $PORT
+ENTRYPOINT ["docker-entrypoint.sh"]
