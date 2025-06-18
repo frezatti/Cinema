@@ -1,49 +1,72 @@
-import React from 'react';
-import { Card, ListGroup, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import React from "react";
+import Button from "@/components/button";
 
-export const MovieSessionCard = ({ movie, sessions, theaters }) => {
-
-    const formatDateTime = (dateString) => {
-        const options = { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' };
-        return new Date(dateString).toLocaleString('pt-BR', options);
+const MovieSessionCard = ({ movie, sessions, theaters, onPurchaseClick }) => {
+    const formatDateTime = (dateTime) => {
+        try {
+            const d = new Date(dateTime);
+            return `${d.toLocaleDateString("pt-BR")} ${d.toLocaleTimeString("pt-BR", {
+                hour: "2-digit",
+                minute: "2-digit",
+            })}`;
+        } catch {
+            return dateTime;
+        }
     };
 
     const formatPrice = (price) => {
-        return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(price);
-    };
-
-    const getTheaterName = (theaterId) => {
-        const theater = theaters.find(t => t.id === theaterId);
-        return theater ? theater.name || `Theater ${theater.number}` : 'Unknown Theater';
+        return Number(price).toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+        });
     };
 
     return (
-        <Card className="h-100">
-            <Card.Img variant="top" src={movie.image || 'https://via.placeholder.com/150x220'} alt={`Poster for ${movie.title}`} />
-            <Card.Body className="d-flex flex-column">
-                <Card.Title>{movie.title}</Card.Title>
-                <Card.Text>{movie.genre}</Card.Text>
-                <h6 className="mt-3 mb-2">Sessions:</h6>
+        <div className="card h-100 shadow-sm">
+            <img
+                src={movie.imagem}
+                alt={`Pôster do filme ${movie.titulo}`}
+                className="card-img-top"
+                style={{ height: "450px", objectFit: "cover" }}
+            />
+            <div className="card-body d-flex flex-column">
+                <h5 className="card-title">{movie.titulo}</h5>
+                <p className="card-text text-muted flex-grow-1">{movie.descricao}</p>
+                <h6 className="mt-3 mb-2">Sessões:</h6>
                 {sessions.length > 0 ? (
-                    <ListGroup variant="flush" className="flex-grow-1">
-                        {sessions.map(session => (
-                            <ListGroup.Item key={session.id} className="d-flex flex-column">
-                                <div>
-                                    <strong>Theater:</strong> {getTheaterName(session.theaterId)}<br />
-                                    <strong>Time:</strong> {formatDateTime(session.dateTime)}<br />
-                                    <strong>Price:</strong> {formatPrice(session.price)}
-                                </div>
-                                <Link to={`/tickets/new?sessionId=${session.id}`} className="btn btn-primary btn-sm mt-2 align-self-end">
-                                    Buy Ticket
-                                </Link>
-                            </ListGroup.Item>
-                        ))}
-                    </ListGroup>
+                    <ul className="list-group list-group-flush">
+                        {sessions.map((session) => {
+                            const theater = theaters.find((t) => t.id === session.salaId);
+                            return (
+                                <li
+                                    key={session.id}
+                                    className="list-group-item d-flex flex-column"
+                                >
+                                    <div>
+                                        <strong>Sala:</strong> {theater?.nome || "Não encontrada"}
+                                        <br />
+                                        <strong>Data e Hora:</strong> {formatDateTime(session.dataHora)}
+                                        <br />
+                                        <strong>Preço:</strong> {formatPrice(session.preco)}
+                                    </div>
+                                    <Button
+                                        className="btn-primary btn-sm mt-2 align-self-end"
+                                        onClick={() => onPurchaseClick(session)}
+                                    >
+                                        Comprar Ingresso
+                                    </Button>
+                                </li>
+                            );
+                        })}
+                    </ul>
                 ) : (
-                    <p className="text-muted">No sessions available for this movie.</p>
+                    <div className="alert alert-warning mt-2 mb-0">
+                        Nenhuma sessão disponível para este filme.
+                    </div>
                 )}
-            </Card.Body>
-        </Card>
+            </div>
+        </div>
     );
 };
+
+export default MovieSessionCard;
