@@ -48,7 +48,7 @@ export const MovieFormModal = ({ show, handleClose, entity, onSave }) => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setError(''); // Clear errors when user types
+        setError('');
         setFormData(prev => ({
             ...prev,
             [name]: name === 'duration' ? parseInt(value) || '' : value
@@ -58,13 +58,7 @@ export const MovieFormModal = ({ show, handleClose, entity, onSave }) => {
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         if (file) {
-            // Validate file size (e.g., max 5MB)
-            if (file.size > 5 * 1024 * 1024) {
-                setError('Image file size must be less than 5MB');
-                return;
-            }
 
-            // Validate file type
             if (!file.type.startsWith('image/')) {
                 setError('Please select a valid image file');
                 return;
@@ -90,7 +84,6 @@ export const MovieFormModal = ({ show, handleClose, entity, onSave }) => {
         setIsSubmitting(true);
 
         try {
-            // Validate required fields
             if (!formData.title?.trim()) {
                 throw new Error('Movie title is required');
             }
@@ -111,7 +104,6 @@ export const MovieFormModal = ({ show, handleClose, entity, onSave }) => {
                 throw new Error('Release date is required');
             }
 
-            // Prepare final form data
             const finalFormData = {
                 title: formData.title.trim(),
                 genre: formData.genre.trim(),
@@ -122,7 +114,6 @@ export const MovieFormModal = ({ show, handleClose, entity, onSave }) => {
                 poster: formData.poster || currentImage || 'https://via.placeholder.com/300x450/cccccc/666666?text=No+Image'
             };
 
-            // Include ID when editing
             if (entity?.id) {
                 finalFormData.id = entity.id;
             }
