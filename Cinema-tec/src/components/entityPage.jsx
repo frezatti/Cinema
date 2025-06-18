@@ -17,6 +17,7 @@ export const EntityPage = ({
     const [showFormModal, setShowFormModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
+    const [editingEntity, setEditingEntity] = useState(null);
 
     const fetchData = async () => {
         try {
@@ -37,13 +38,13 @@ export const EntityPage = ({
     }, []);
 
     const handleOpenFormModal = (item = null) => {
-        setSelectedItem(item);
+        setEditingEntity(item);
         setShowFormModal(true);
     };
 
     const handleCloseFormModal = () => {
         setShowFormModal(false);
-        setSelectedItem(null);
+        setEditingEntity(null);
     };
 
     const handleOpenDeleteModal = (item) => {
@@ -56,20 +57,20 @@ export const EntityPage = ({
         setSelectedItem(null);
     };
 
-    const handleSave = (itemData) => {
-        const savePromise = itemData.id
-            ? service.update(itemData.id, itemData)
-            : service.create(itemData);
+    const handleSave = async (itemData) => {
+        try {
+            const savePromise = editingEntity
+                ? service.update(editingEntity.id, itemData)
+                : service.create(itemData);
 
-        savePromise
-            .then(() => {
-                fetchData();
-                handleCloseFormModal();
-            })
-            .catch(err => {
-                console.error(`Failed to save ${entityName}:`, err);
-                setError(`Failed to save ${entityName}. Please try again.`);
-            });
+            await savePromise;
+            fetchData();
+            handleCloseFormModal();
+        } catch (err) {
+            console.error(`Failed to save ${entityName}:`, err);
+            setError(`Failed to save ${entityName}. Please try again.`);
+            throw err;
+        }
     };
 
     const handleDelete = () => {
@@ -86,14 +87,12 @@ export const EntityPage = ({
         }
     };
 
-    // Enhanced search functionality - generic across all entity types
     const filteredData = useMemo(() => {
         if (!data || !searchTerm.trim()) return data || [];
 
         const searchTermLower = searchTerm.toLowerCase().trim();
 
         return data.filter(item => {
-            // Search across all columns that are defined for this entity
             return columns.some(column => {
                 const value = item[column.accessor];
                 return value && value.toString().toLowerCase().includes(searchTermLower);
@@ -101,11 +100,9 @@ export const EntityPage = ({
         });
     }, [data, searchTerm, columns]);
 
-    // Handle search with Enter key like FilmeController
     const handleSearchKeyPress = (e) => {
         if (e.key === 'Enter') {
             e.preventDefault();
-            // Search is already handled by the filteredData useMemo
         }
     };
 
@@ -157,7 +154,6 @@ export const EntityPage = ({
                 </Alert>
             )}
 
-            {/* Enhanced search section */}
             <Row className="mb-4">
                 <Col md={8}>
                     <InputGroup>
@@ -179,7 +175,7 @@ export const EntityPage = ({
                         )}
                         <Button
                             variant="primary"
-                            onClick={() => {/* Search is reactive, no action needed */ }}
+                            onClick={() => { }}
                             title="Search"
                         >
                             <i className="bi bi-search"></i>
@@ -224,7 +220,7 @@ export const EntityPage = ({
                 <FormComponent
                     show={showFormModal}
                     handleClose={handleCloseFormModal}
-                    entity={selectedItem}
+                    entity={editingEntity}
                     onSave={handleSave}
                 />
             )}
@@ -237,7 +233,6 @@ export const EntityPage = ({
                     {selectedItem && (
                         <>
                             <h5>Are you sure you want to delete this {entityName.toLowerCase()}?</h5>
-                            {/* Show entity identifier if available */}
                             {(selectedItem.title || selectedItem.name) && (
                                 <p className="mb-3">
                                     <strong>"{selectedItem.title || selectedItem.name}"</strong>

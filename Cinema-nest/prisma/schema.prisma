@@ -39,6 +39,7 @@ model Movie {
 model Theater {
     id        Int       @id @default(autoincrement())
     name      String    @unique
+    number    Int       @unique
     capacity  Int
     type      String
     createdAt DateTime  @default(now())

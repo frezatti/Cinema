@@ -10,6 +10,10 @@ export class CreateTheaterDto {
   @IsNotEmpty()
   capacity: number;
 
+  @IsInt()
+  @IsPositive()
+  number: number;
+
   @IsString()
   @IsIn(['2D', '3D', 'IMAX'])
   type: string;
