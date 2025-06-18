@@ -20,8 +20,8 @@ services:
     build:
       context: ./Cinema-nest
       dockerfile: Dockerfile
-    args:
-      - PORT=${BACKEND_PORT}
+      args:
+        - PORT=${BACKEND_PORT}
     container_name: cinema-backend
     restart: unless-stopped
     environment:

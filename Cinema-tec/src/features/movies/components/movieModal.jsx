@@ -14,15 +14,14 @@ export const MovieFormModal = ({ show, handleClose, entity, onSave }) => {
             duration: '',
             releaseDate: '',
             description: '',
-            image: ''
+            poster: ''
         };
 
         setFormData(entity || defaultData);
 
-        // Set current image for editing
-        if (entity && entity.image) {
-            setCurrentImage(entity.image);
-            setImagePreview(entity.image);
+        if (entity && entity.poster) {
+            setCurrentImage(entity.poster);
+            setImagePreview(entity.poster);
         } else {
             setCurrentImage(null);
             setImagePreview(null);
@@ -41,10 +40,10 @@ export const MovieFormModal = ({ show, handleClose, entity, onSave }) => {
             reader.onload = () => {
                 const base64Image = reader.result;
                 setImagePreview(base64Image);
-                setFormData(prev => ({ ...prev, image: base64Image }));
+                setFormData(prev => ({ ...prev, poster: base64Image }));
             };
             reader.onerror = () => {
-                console.error("Error reading image file");
+                console.error("Error reading poster file");
             };
             reader.readAsDataURL(file);
         }
@@ -53,10 +52,10 @@ export const MovieFormModal = ({ show, handleClose, entity, onSave }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Use current image if no new image was selected
+        // Use current poster if no new poster was selected
         const finalFormData = {
             ...formData,
-            image: formData.image || currentImage || 'https://via.placeholder.com/150x220'
+            poster: formData.poster || currentImage || 'https://via.placeholder.com/150x220'
         };
 
         onSave(finalFormData);
@@ -174,7 +173,7 @@ export const MovieFormModal = ({ show, handleClose, entity, onSave }) => {
                                     onChange={handleImageChange}
                                 />
                                 <Form.Text className="text-muted">
-                                    Upload a movie poster image
+                                    Upload a movie poster poster
                                 </Form.Text>
                             </Form.Group>
 

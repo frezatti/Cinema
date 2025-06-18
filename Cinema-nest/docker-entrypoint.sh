@@ -1,3 +1,4 @@
+#!/usr/bin/env sh
 set -e
 
 npx prisma migrate deploy

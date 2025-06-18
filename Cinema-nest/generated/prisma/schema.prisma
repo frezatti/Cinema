@@ -27,6 +27,7 @@ model Movie {
   rating      String
   duration    Int
   poster      String?
+  description String?
   releaseDate DateTime
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt

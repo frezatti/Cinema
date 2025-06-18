@@ -136,6 +136,7 @@ exports.Prisma.MovieScalarFieldEnum = {
   rating: 'rating',
   duration: 'duration',
   poster: 'poster',
+  description: 'description',
   releaseDate: 'releaseDate',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'

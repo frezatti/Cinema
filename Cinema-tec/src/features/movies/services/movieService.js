@@ -21,11 +21,15 @@ export const createMovie = (movieData) => {
 };
 
 export const update = (id, movieData) => {
-  return apiClient.patch(`/movies/${id}`, movieData);
+  const { id: _ignoreId, createdAt, updatedAt, ...payload } = movieData;
+  if (!payload.poster) delete payload.poster;
+  return apiClient.patch(`/movies/${id}`, payload);
 };
 
 export const updateMovie = (id, movieData) => {
-  return apiClient.patch(`/movies/${id}`, movieData);
+  const { id: _ignoreId, createdAt, updatedAt, ...payload } = movieData;
+  if (!payload.poster) delete payload.poster;
+  return apiClient.patch(`/movies/${id}`, payload);
 };
 
 export const remove = (id) => {

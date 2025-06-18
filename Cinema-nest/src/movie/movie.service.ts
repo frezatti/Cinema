@@ -25,7 +25,6 @@ export class MovieService {
 
   async create(createMovieDto: CreateMovieDto): Promise<Movie> {
     try {
-      // Validate base64 image if provided
       if (
         createMovieDto.poster &&
         !this.validateBase64Image(createMovieDto.poster)
@@ -37,6 +36,7 @@ export class MovieService {
         data: {
           title: createMovieDto.title,
           genre: createMovieDto.genre,
+          description: createMovieDto.description,
           rating: createMovieDto.rating,
           duration: createMovieDto.duration,
           releaseDate: this.parseDate(createMovieDto.releaseDate),

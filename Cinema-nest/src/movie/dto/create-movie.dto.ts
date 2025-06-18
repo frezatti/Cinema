@@ -31,6 +31,10 @@ export class CreateMovieDto {
 
   @IsOptional()
   @IsString()
+  description: string;
+
+  @IsOptional()
+  @IsString()
   @Matches(/^data:image\/(jpeg|jpg|png|gif|webp);base64,/, {
     message: 'Invalid image format. Must be a valid base64 image.',
   })

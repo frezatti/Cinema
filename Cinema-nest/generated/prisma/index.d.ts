@@ -2502,6 +2502,7 @@ export namespace Prisma {
     rating: string | null
     duration: number | null
     poster: string | null
+    description: string | null
     releaseDate: Date | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -2514,6 +2515,7 @@ export namespace Prisma {
     rating: string | null
     duration: number | null
     poster: string | null
+    description: string | null
     releaseDate: Date | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -2526,6 +2528,7 @@ export namespace Prisma {
     rating: number
     duration: number
     poster: number
+    description: number
     releaseDate: number
     createdAt: number
     updatedAt: number
@@ -2550,6 +2553,7 @@ export namespace Prisma {
     rating?: true
     duration?: true
     poster?: true
+    description?: true
     releaseDate?: true
     createdAt?: true
     updatedAt?: true
@@ -2562,6 +2566,7 @@ export namespace Prisma {
     rating?: true
     duration?: true
     poster?: true
+    description?: true
     releaseDate?: true
     createdAt?: true
     updatedAt?: true
@@ -2574,6 +2579,7 @@ export namespace Prisma {
     rating?: true
     duration?: true
     poster?: true
+    description?: true
     releaseDate?: true
     createdAt?: true
     updatedAt?: true
@@ -2673,6 +2679,7 @@ export namespace Prisma {
     rating: string
     duration: number
     poster: string | null
+    description: string | null
     releaseDate: Date
     createdAt: Date
     updatedAt: Date
@@ -2704,6 +2711,7 @@ export namespace Prisma {
     rating?: boolean
     duration?: boolean
     poster?: boolean
+    description?: boolean
     releaseDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -2718,6 +2726,7 @@ export namespace Prisma {
     rating?: boolean
     duration?: boolean
     poster?: boolean
+    description?: boolean
     releaseDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -2730,6 +2739,7 @@ export namespace Prisma {
     rating?: boolean
     duration?: boolean
     poster?: boolean
+    description?: boolean
     releaseDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -2742,12 +2752,13 @@ export namespace Prisma {
     rating?: boolean
     duration?: boolean
     poster?: boolean
+    description?: boolean
     releaseDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type MovieOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "genre" | "rating" | "duration" | "poster" | "releaseDate" | "createdAt" | "updatedAt", ExtArgs["result"]["movie"]>
+  export type MovieOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "genre" | "rating" | "duration" | "poster" | "description" | "releaseDate" | "createdAt" | "updatedAt", ExtArgs["result"]["movie"]>
   export type MovieInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Session?: boolean | Movie$SessionArgs<ExtArgs>
     _count?: boolean | MovieCountOutputTypeDefaultArgs<ExtArgs>
@@ -2767,6 +2778,7 @@ export namespace Prisma {
       rating: string
       duration: number
       poster: string | null
+      description: string | null
       releaseDate: Date
       createdAt: Date
       updatedAt: Date
@@ -3200,6 +3212,7 @@ export namespace Prisma {
     readonly rating: FieldRef<"Movie", 'String'>
     readonly duration: FieldRef<"Movie", 'Int'>
     readonly poster: FieldRef<"Movie", 'String'>
+    readonly description: FieldRef<"Movie", 'String'>
     readonly releaseDate: FieldRef<"Movie", 'DateTime'>
     readonly createdAt: FieldRef<"Movie", 'DateTime'>
     readonly updatedAt: FieldRef<"Movie", 'DateTime'>
@@ -7134,6 +7147,7 @@ export namespace Prisma {
     rating: 'rating',
     duration: 'duration',
     poster: 'poster',
+    description: 'description',
     releaseDate: 'releaseDate',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -7356,6 +7370,7 @@ export namespace Prisma {
     rating?: StringFilter<"Movie"> | string
     duration?: IntFilter<"Movie"> | number
     poster?: StringNullableFilter<"Movie"> | string | null
+    description?: StringNullableFilter<"Movie"> | string | null
     releaseDate?: DateTimeFilter<"Movie"> | Date | string
     createdAt?: DateTimeFilter<"Movie"> | Date | string
     updatedAt?: DateTimeFilter<"Movie"> | Date | string
@@ -7369,6 +7384,7 @@ export namespace Prisma {
     rating?: SortOrder
     duration?: SortOrder
     poster?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
     releaseDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -7385,6 +7401,7 @@ export namespace Prisma {
     rating?: StringFilter<"Movie"> | string
     duration?: IntFilter<"Movie"> | number
     poster?: StringNullableFilter<"Movie"> | string | null
+    description?: StringNullableFilter<"Movie"> | string | null
     releaseDate?: DateTimeFilter<"Movie"> | Date | string
     createdAt?: DateTimeFilter<"Movie"> | Date | string
     updatedAt?: DateTimeFilter<"Movie"> | Date | string
@@ -7398,6 +7415,7 @@ export namespace Prisma {
     rating?: SortOrder
     duration?: SortOrder
     poster?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
     releaseDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -7418,6 +7436,7 @@ export namespace Prisma {
     rating?: StringWithAggregatesFilter<"Movie"> | string
     duration?: IntWithAggregatesFilter<"Movie"> | number
     poster?: StringNullableWithAggregatesFilter<"Movie"> | string | null
+    description?: StringNullableWithAggregatesFilter<"Movie"> | string | null
     releaseDate?: DateTimeWithAggregatesFilter<"Movie"> | Date | string
     createdAt?: DateTimeWithAggregatesFilter<"Movie"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Movie"> | Date | string
@@ -7708,6 +7727,7 @@ export namespace Prisma {
     rating: string
     duration: number
     poster?: string | null
+    description?: string | null
     releaseDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -7721,6 +7741,7 @@ export namespace Prisma {
     rating: string
     duration: number
     poster?: string | null
+    description?: string | null
     releaseDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -7733,6 +7754,7 @@ export namespace Prisma {
     rating?: StringFieldUpdateOperationsInput | string
     duration?: IntFieldUpdateOperationsInput | number
     poster?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7746,6 +7768,7 @@ export namespace Prisma {
     rating?: StringFieldUpdateOperationsInput | string
     duration?: IntFieldUpdateOperationsInput | number
     poster?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7759,6 +7782,7 @@ export namespace Prisma {
     rating: string
     duration: number
     poster?: string | null
+    description?: string | null
     releaseDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -7770,6 +7794,7 @@ export namespace Prisma {
     rating?: StringFieldUpdateOperationsInput | string
     duration?: IntFieldUpdateOperationsInput | number
     poster?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7782,6 +7807,7 @@ export namespace Prisma {
     rating?: StringFieldUpdateOperationsInput | string
     duration?: IntFieldUpdateOperationsInput | number
     poster?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8184,6 +8210,7 @@ export namespace Prisma {
     rating?: SortOrder
     duration?: SortOrder
     poster?: SortOrder
+    description?: SortOrder
     releaseDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -8201,6 +8228,7 @@ export namespace Prisma {
     rating?: SortOrder
     duration?: SortOrder
     poster?: SortOrder
+    description?: SortOrder
     releaseDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -8213,6 +8241,7 @@ export namespace Prisma {
     rating?: SortOrder
     duration?: SortOrder
     poster?: SortOrder
+    description?: SortOrder
     releaseDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -9051,6 +9080,7 @@ export namespace Prisma {
     rating: string
     duration: number
     poster?: string | null
+    description?: string | null
     releaseDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -9063,6 +9093,7 @@ export namespace Prisma {
     rating: string
     duration: number
     poster?: string | null
+    description?: string | null
     releaseDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -9141,6 +9172,7 @@ export namespace Prisma {
     rating?: StringFieldUpdateOperationsInput | string
     duration?: IntFieldUpdateOperationsInput | number
     poster?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9153,6 +9185,7 @@ export namespace Prisma {
     rating?: StringFieldUpdateOperationsInput | string
     duration?: IntFieldUpdateOperationsInput | number
     poster?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string

@@ -9,10 +9,10 @@ export const Movie = () => {
         { header: 'ID', accessor: 'id' },
         {
             header: 'Poster',
-            accessor: 'image',
-            cell: (image) => (
+            accessor: 'poster',
+            cell: (poster) => (
                 <img
-                    src={image || 'https://via.placeholder.com/50x75'}
+                    src={poster || 'https://via.placeholder.com/50x75'}
                     alt="Movie poster"
                     style={{
                         width: '50px',
