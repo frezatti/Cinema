@@ -6,7 +6,7 @@ import MovieSessionCard from "@/features/movies/components/MovieSessionCard";
 import TicketModal from "@/features/tickets/components/ticketModal";
 import { useTicketCreation } from "@/hooks/useTicketCreation";
 
-const HomePage = () => {
+const Home = () => {
     const [movies, setMovies] = useState([]);
     const [sessions, setSessions] = useState([]);
     const [theaters, setTheaters] = useState([]);
@@ -97,4 +97,4 @@ const HomePage = () => {
     );
 };
 
-export default HomePage;
+export default Home;

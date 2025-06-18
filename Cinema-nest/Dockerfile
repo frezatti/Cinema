@@ -18,4 +18,4 @@ RUN npm run build
 
 EXPOSE ${PORT}
 
-CMD ["sh", "-c", "npx prisma migrate deploy && npm run start:prod"]
+CMD ["sh", "-c", "npx prisma migrate dev && npm run start:dev"]

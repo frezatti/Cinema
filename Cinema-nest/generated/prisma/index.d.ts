@@ -271,8 +271,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.9.0
-   * Query Engine version: 81e4af48011447c3cc503a190e86995b66d2a28e
+   * Prisma Client JS version: 6.10.0
+   * Query Engine version: aee10d5a411e4360c6d3445ce4810ca65adbf3e8
    */
   export type PrismaVersion = {
     client: string
@@ -2501,6 +2501,7 @@ export namespace Prisma {
     genre: string | null
     rating: string | null
     duration: number | null
+    poster: string | null
     releaseDate: Date | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -2512,6 +2513,7 @@ export namespace Prisma {
     genre: string | null
     rating: string | null
     duration: number | null
+    poster: string | null
     releaseDate: Date | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -2523,6 +2525,7 @@ export namespace Prisma {
     genre: number
     rating: number
     duration: number
+    poster: number
     releaseDate: number
     createdAt: number
     updatedAt: number
@@ -2546,6 +2549,7 @@ export namespace Prisma {
     genre?: true
     rating?: true
     duration?: true
+    poster?: true
     releaseDate?: true
     createdAt?: true
     updatedAt?: true
@@ -2557,6 +2561,7 @@ export namespace Prisma {
     genre?: true
     rating?: true
     duration?: true
+    poster?: true
     releaseDate?: true
     createdAt?: true
     updatedAt?: true
@@ -2568,6 +2573,7 @@ export namespace Prisma {
     genre?: true
     rating?: true
     duration?: true
+    poster?: true
     releaseDate?: true
     createdAt?: true
     updatedAt?: true
@@ -2666,6 +2672,7 @@ export namespace Prisma {
     genre: string
     rating: string
     duration: number
+    poster: string | null
     releaseDate: Date
     createdAt: Date
     updatedAt: Date
@@ -2696,6 +2703,7 @@ export namespace Prisma {
     genre?: boolean
     rating?: boolean
     duration?: boolean
+    poster?: boolean
     releaseDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -2709,6 +2717,7 @@ export namespace Prisma {
     genre?: boolean
     rating?: boolean
     duration?: boolean
+    poster?: boolean
     releaseDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -2720,6 +2729,7 @@ export namespace Prisma {
     genre?: boolean
     rating?: boolean
     duration?: boolean
+    poster?: boolean
     releaseDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -2731,12 +2741,13 @@ export namespace Prisma {
     genre?: boolean
     rating?: boolean
     duration?: boolean
+    poster?: boolean
     releaseDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type MovieOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "genre" | "rating" | "duration" | "releaseDate" | "createdAt" | "updatedAt", ExtArgs["result"]["movie"]>
+  export type MovieOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "genre" | "rating" | "duration" | "poster" | "releaseDate" | "createdAt" | "updatedAt", ExtArgs["result"]["movie"]>
   export type MovieInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Session?: boolean | Movie$SessionArgs<ExtArgs>
     _count?: boolean | MovieCountOutputTypeDefaultArgs<ExtArgs>
@@ -2755,6 +2766,7 @@ export namespace Prisma {
       genre: string
       rating: string
       duration: number
+      poster: string | null
       releaseDate: Date
       createdAt: Date
       updatedAt: Date
@@ -3187,6 +3199,7 @@ export namespace Prisma {
     readonly genre: FieldRef<"Movie", 'String'>
     readonly rating: FieldRef<"Movie", 'String'>
     readonly duration: FieldRef<"Movie", 'Int'>
+    readonly poster: FieldRef<"Movie", 'String'>
     readonly releaseDate: FieldRef<"Movie", 'DateTime'>
     readonly createdAt: FieldRef<"Movie", 'DateTime'>
     readonly updatedAt: FieldRef<"Movie", 'DateTime'>
@@ -3647,6 +3660,7 @@ export namespace Prisma {
     name: string | null
     capacity: number | null
     type: string | null
+    createdAt: Date | null
     updatedAt: Date | null
   }
 
@@ -3655,6 +3669,7 @@ export namespace Prisma {
     name: string | null
     capacity: number | null
     type: string | null
+    createdAt: Date | null
     updatedAt: Date | null
   }
 
@@ -3663,6 +3678,7 @@ export namespace Prisma {
     name: number
     capacity: number
     type: number
+    createdAt: number
     updatedAt: number
     _all: number
   }
@@ -3683,6 +3699,7 @@ export namespace Prisma {
     name?: true
     capacity?: true
     type?: true
+    createdAt?: true
     updatedAt?: true
   }
 
@@ -3691,6 +3708,7 @@ export namespace Prisma {
     name?: true
     capacity?: true
     type?: true
+    createdAt?: true
     updatedAt?: true
   }
 
@@ -3699,6 +3717,7 @@ export namespace Prisma {
     name?: true
     capacity?: true
     type?: true
+    createdAt?: true
     updatedAt?: true
     _all?: true
   }
@@ -3794,6 +3813,7 @@ export namespace Prisma {
     name: string
     capacity: number
     type: string
+    createdAt: Date
     updatedAt: Date
     _count: TheaterCountAggregateOutputType | null
     _avg: TheaterAvgAggregateOutputType | null
@@ -3821,6 +3841,7 @@ export namespace Prisma {
     name?: boolean
     capacity?: boolean
     type?: boolean
+    createdAt?: boolean
     updatedAt?: boolean
     Session?: boolean | Theater$SessionArgs<ExtArgs>
     _count?: boolean | TheaterCountOutputTypeDefaultArgs<ExtArgs>
@@ -3831,6 +3852,7 @@ export namespace Prisma {
     name?: boolean
     capacity?: boolean
     type?: boolean
+    createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["theater"]>
 
@@ -3839,6 +3861,7 @@ export namespace Prisma {
     name?: boolean
     capacity?: boolean
     type?: boolean
+    createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["theater"]>
 
@@ -3847,10 +3870,11 @@ export namespace Prisma {
     name?: boolean
     capacity?: boolean
     type?: boolean
+    createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type TheaterOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "capacity" | "type" | "updatedAt", ExtArgs["result"]["theater"]>
+  export type TheaterOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "capacity" | "type" | "createdAt" | "updatedAt", ExtArgs["result"]["theater"]>
   export type TheaterInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Session?: boolean | Theater$SessionArgs<ExtArgs>
     _count?: boolean | TheaterCountOutputTypeDefaultArgs<ExtArgs>
@@ -3868,6 +3892,7 @@ export namespace Prisma {
       name: string
       capacity: number
       type: string
+      createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["theater"]>
     composites: {}
@@ -4297,6 +4322,7 @@ export namespace Prisma {
     readonly name: FieldRef<"Theater", 'String'>
     readonly capacity: FieldRef<"Theater", 'Int'>
     readonly type: FieldRef<"Theater", 'String'>
+    readonly createdAt: FieldRef<"Theater", 'DateTime'>
     readonly updatedAt: FieldRef<"Theater", 'DateTime'>
   }
     
@@ -7107,6 +7133,7 @@ export namespace Prisma {
     genre: 'genre',
     rating: 'rating',
     duration: 'duration',
+    poster: 'poster',
     releaseDate: 'releaseDate',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -7120,6 +7147,7 @@ export namespace Prisma {
     name: 'name',
     capacity: 'capacity',
     type: 'type',
+    createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
 
@@ -7327,6 +7355,7 @@ export namespace Prisma {
     genre?: StringFilter<"Movie"> | string
     rating?: StringFilter<"Movie"> | string
     duration?: IntFilter<"Movie"> | number
+    poster?: StringNullableFilter<"Movie"> | string | null
     releaseDate?: DateTimeFilter<"Movie"> | Date | string
     createdAt?: DateTimeFilter<"Movie"> | Date | string
     updatedAt?: DateTimeFilter<"Movie"> | Date | string
@@ -7339,6 +7368,7 @@ export namespace Prisma {
     genre?: SortOrder
     rating?: SortOrder
     duration?: SortOrder
+    poster?: SortOrderInput | SortOrder
     releaseDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -7354,6 +7384,7 @@ export namespace Prisma {
     genre?: StringFilter<"Movie"> | string
     rating?: StringFilter<"Movie"> | string
     duration?: IntFilter<"Movie"> | number
+    poster?: StringNullableFilter<"Movie"> | string | null
     releaseDate?: DateTimeFilter<"Movie"> | Date | string
     createdAt?: DateTimeFilter<"Movie"> | Date | string
     updatedAt?: DateTimeFilter<"Movie"> | Date | string
@@ -7366,6 +7397,7 @@ export namespace Prisma {
     genre?: SortOrder
     rating?: SortOrder
     duration?: SortOrder
+    poster?: SortOrderInput | SortOrder
     releaseDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -7385,6 +7417,7 @@ export namespace Prisma {
     genre?: StringWithAggregatesFilter<"Movie"> | string
     rating?: StringWithAggregatesFilter<"Movie"> | string
     duration?: IntWithAggregatesFilter<"Movie"> | number
+    poster?: StringNullableWithAggregatesFilter<"Movie"> | string | null
     releaseDate?: DateTimeWithAggregatesFilter<"Movie"> | Date | string
     createdAt?: DateTimeWithAggregatesFilter<"Movie"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Movie"> | Date | string
@@ -7398,6 +7431,7 @@ export namespace Prisma {
     name?: StringFilter<"Theater"> | string
     capacity?: IntFilter<"Theater"> | number
     type?: StringFilter<"Theater"> | string
+    createdAt?: DateTimeFilter<"Theater"> | Date | string
     updatedAt?: DateTimeFilter<"Theater"> | Date | string
     Session?: SessionListRelationFilter
   }
@@ -7407,6 +7441,7 @@ export namespace Prisma {
     name?: SortOrder
     capacity?: SortOrder
     type?: SortOrder
+    createdAt?: SortOrder
     updatedAt?: SortOrder
     Session?: SessionOrderByRelationAggregateInput
   }
@@ -7419,6 +7454,7 @@ export namespace Prisma {
     NOT?: TheaterWhereInput | TheaterWhereInput[]
     capacity?: IntFilter<"Theater"> | number
     type?: StringFilter<"Theater"> | string
+    createdAt?: DateTimeFilter<"Theater"> | Date | string
     updatedAt?: DateTimeFilter<"Theater"> | Date | string
     Session?: SessionListRelationFilter
   }, "id" | "name">
@@ -7428,6 +7464,7 @@ export namespace Prisma {
     name?: SortOrder
     capacity?: SortOrder
     type?: SortOrder
+    createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: TheaterCountOrderByAggregateInput
     _avg?: TheaterAvgOrderByAggregateInput
@@ -7444,6 +7481,7 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"Theater"> | string
     capacity?: IntWithAggregatesFilter<"Theater"> | number
     type?: StringWithAggregatesFilter<"Theater"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Theater"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Theater"> | Date | string
   }
 
@@ -7669,6 +7707,7 @@ export namespace Prisma {
     genre: string
     rating: string
     duration: number
+    poster?: string | null
     releaseDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -7681,6 +7720,7 @@ export namespace Prisma {
     genre: string
     rating: string
     duration: number
+    poster?: string | null
     releaseDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -7692,6 +7732,7 @@ export namespace Prisma {
     genre?: StringFieldUpdateOperationsInput | string
     rating?: StringFieldUpdateOperationsInput | string
     duration?: IntFieldUpdateOperationsInput | number
+    poster?: NullableStringFieldUpdateOperationsInput | string | null
     releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7704,6 +7745,7 @@ export namespace Prisma {
     genre?: StringFieldUpdateOperationsInput | string
     rating?: StringFieldUpdateOperationsInput | string
     duration?: IntFieldUpdateOperationsInput | number
+    poster?: NullableStringFieldUpdateOperationsInput | string | null
     releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7716,6 +7758,7 @@ export namespace Prisma {
     genre: string
     rating: string
     duration: number
+    poster?: string | null
     releaseDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -7726,6 +7769,7 @@ export namespace Prisma {
     genre?: StringFieldUpdateOperationsInput | string
     rating?: StringFieldUpdateOperationsInput | string
     duration?: IntFieldUpdateOperationsInput | number
+    poster?: NullableStringFieldUpdateOperationsInput | string | null
     releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7737,6 +7781,7 @@ export namespace Prisma {
     genre?: StringFieldUpdateOperationsInput | string
     rating?: StringFieldUpdateOperationsInput | string
     duration?: IntFieldUpdateOperationsInput | number
+    poster?: NullableStringFieldUpdateOperationsInput | string | null
     releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7746,6 +7791,7 @@ export namespace Prisma {
     name: string
     capacity: number
     type: string
+    createdAt?: Date | string
     updatedAt?: Date | string
     Session?: SessionCreateNestedManyWithoutTheaterInput
   }
@@ -7755,6 +7801,7 @@ export namespace Prisma {
     name: string
     capacity: number
     type: string
+    createdAt?: Date | string
     updatedAt?: Date | string
     Session?: SessionUncheckedCreateNestedManyWithoutTheaterInput
   }
@@ -7763,6 +7810,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     capacity?: IntFieldUpdateOperationsInput | number
     type?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Session?: SessionUpdateManyWithoutTheaterNestedInput
   }
@@ -7772,6 +7820,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     capacity?: IntFieldUpdateOperationsInput | number
     type?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Session?: SessionUncheckedUpdateManyWithoutTheaterNestedInput
   }
@@ -7781,6 +7830,7 @@ export namespace Prisma {
     name: string
     capacity: number
     type: string
+    createdAt?: Date | string
     updatedAt?: Date | string
   }
 
@@ -7788,6 +7838,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     capacity?: IntFieldUpdateOperationsInput | number
     type?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -7796,6 +7847,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     capacity?: IntFieldUpdateOperationsInput | number
     type?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -8131,6 +8183,7 @@ export namespace Prisma {
     genre?: SortOrder
     rating?: SortOrder
     duration?: SortOrder
+    poster?: SortOrder
     releaseDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -8147,6 +8200,7 @@ export namespace Prisma {
     genre?: SortOrder
     rating?: SortOrder
     duration?: SortOrder
+    poster?: SortOrder
     releaseDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -8158,6 +8212,7 @@ export namespace Prisma {
     genre?: SortOrder
     rating?: SortOrder
     duration?: SortOrder
+    poster?: SortOrder
     releaseDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -8173,6 +8228,7 @@ export namespace Prisma {
     name?: SortOrder
     capacity?: SortOrder
     type?: SortOrder
+    createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
@@ -8186,6 +8242,7 @@ export namespace Prisma {
     name?: SortOrder
     capacity?: SortOrder
     type?: SortOrder
+    createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
@@ -8194,6 +8251,7 @@ export namespace Prisma {
     name?: SortOrder
     capacity?: SortOrder
     type?: SortOrder
+    createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
@@ -8992,6 +9050,7 @@ export namespace Prisma {
     genre: string
     rating: string
     duration: number
+    poster?: string | null
     releaseDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -9003,6 +9062,7 @@ export namespace Prisma {
     genre: string
     rating: string
     duration: number
+    poster?: string | null
     releaseDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -9017,6 +9077,7 @@ export namespace Prisma {
     name: string
     capacity: number
     type: string
+    createdAt?: Date | string
     updatedAt?: Date | string
   }
 
@@ -9025,6 +9086,7 @@ export namespace Prisma {
     name: string
     capacity: number
     type: string
+    createdAt?: Date | string
     updatedAt?: Date | string
   }
 
@@ -9078,6 +9140,7 @@ export namespace Prisma {
     genre?: StringFieldUpdateOperationsInput | string
     rating?: StringFieldUpdateOperationsInput | string
     duration?: IntFieldUpdateOperationsInput | number
+    poster?: NullableStringFieldUpdateOperationsInput | string | null
     releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9089,6 +9152,7 @@ export namespace Prisma {
     genre?: StringFieldUpdateOperationsInput | string
     rating?: StringFieldUpdateOperationsInput | string
     duration?: IntFieldUpdateOperationsInput | number
+    poster?: NullableStringFieldUpdateOperationsInput | string | null
     releaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9109,6 +9173,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     capacity?: IntFieldUpdateOperationsInput | number
     type?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -9117,6 +9182,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     capacity?: IntFieldUpdateOperationsInput | number
     type?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
