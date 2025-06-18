@@ -35,6 +35,7 @@ export const SessionModal = ({ show, handleClose, entity, onSave }) => {
             price: parseFloat(formData.price),
             movieId: parseInt(formData.movieId),
             theaterId: parseInt(formData.theaterId),
+            dateTime: new Date(formData.dateTime).toISOString(),
         });
     };
 
@@ -87,7 +88,7 @@ export const SessionModal = ({ show, handleClose, entity, onSave }) => {
                         <Form.Control
                             type="datetime-local"
                             name="dateTime"
-                            value={formData.dateTime ? new Date(formData.dateTime).toISOString() : ''}
+                            value={formData.dateTime ? new Date(formData.dateTime).toISOString().slice(0, 16) : ''}
                             onChange={handleChange}
                             required
                         />
