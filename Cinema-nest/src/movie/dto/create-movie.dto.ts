@@ -4,6 +4,8 @@ import {
   IsInt,
   IsPositive,
   IsDateString,
+  IsOptional,
+  Matches,
 } from 'class-validator';
 
 export class CreateMovieDto {
@@ -26,4 +28,11 @@ export class CreateMovieDto {
   @IsDateString()
   @IsNotEmpty()
   releaseDate: string;
+
+  @IsOptional()
+  @IsString()
+  @Matches(/^data:image\/(jpeg|jpg|png|gif|webp);base64,/, {
+    message: 'Invalid image format. Must be a valid base64 image.',
+  })
+  poster?: string;
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from '../prisma/prisma.service'; // Adjust path as needed
+import { PrismaService } from '../prisma/prisma.service';
 import { CreateMovieDto } from './dto/create-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
 import { Movie, Prisma } from 'generated/prisma';
@@ -18,8 +18,21 @@ export class MovieService {
     return date;
   }
 
+  private validateBase64Image(base64String: string): boolean {
+    const base64Regex = /^data:image\/(jpeg|jpg|png|gif|webp);base64,/;
+    return base64Regex.test(base64String);
+  }
+
   async create(createMovieDto: CreateMovieDto): Promise<Movie> {
     try {
+      // Validate base64 image if provided
+      if (
+        createMovieDto.poster &&
+        !this.validateBase64Image(createMovieDto.poster)
+      ) {
+        throw new Error('Invalid image format');
+      }
+
       return await this.prisma.movie.create({
         data: {
           title: createMovieDto.title,
@@ -27,6 +40,7 @@ export class MovieService {
           rating: createMovieDto.rating,
           duration: createMovieDto.duration,
           releaseDate: this.parseDate(createMovieDto.releaseDate),
+          poster: createMovieDto.poster,
         },
       });
     } catch (error) {
@@ -59,6 +73,14 @@ export class MovieService {
     // Convert releaseDate if provided
     if (updateMovieDto.releaseDate) {
       updateData.releaseDate = this.parseDate(updateMovieDto.releaseDate);
+    }
+
+    // Validate base64 image if provided
+    if (
+      updateMovieDto.poster &&
+      !this.validateBase64Image(updateMovieDto.poster)
+    ) {
+      throw new Error('Invalid image format');
     }
 
     return await this.prisma.movie.update({

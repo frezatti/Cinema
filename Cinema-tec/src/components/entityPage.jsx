@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Container, Button, Modal, InputGroup, Form } from 'react-bootstrap';
+import { Container, Button, Modal, InputGroup, Form, Row, Col, Alert } from 'react-bootstrap';
 import { GenericDataTable } from '@/components/datatable';
 
 export const EntityPage = ({
@@ -66,7 +66,10 @@ export const EntityPage = ({
                 fetchData();
                 handleCloseFormModal();
             })
-            .catch(err => console.error(`Failed to save ${entityName}:`, err));
+            .catch(err => {
+                console.error(`Failed to save ${entityName}:`, err);
+                setError(`Failed to save ${entityName}. Please try again.`);
+            });
     };
 
     const handleDelete = () => {
@@ -76,19 +79,39 @@ export const EntityPage = ({
                     handleCloseDeleteModal();
                     fetchData();
                 })
-                .catch(err => console.error(`Failed to delete ${entityName}:`, err));
+                .catch(err => {
+                    console.error(`Failed to delete ${entityName}:`, err);
+                    setError(`Failed to delete ${entityName}. Please try again.`);
+                });
         }
     };
 
+    // Enhanced search functionality - generic across all entity types
     const filteredData = useMemo(() => {
-        if (!data) return [];
-        // Assuming the primary searchable field is 'name' or 'title'
-        const searchableKey = columns.find(c => c.accessor === 'name' || c.accessor === 'title')?.accessor || 'id';
-        return data.filter(item =>
-            item[searchableKey]?.toString().toLowerCase().includes(searchTerm.toLowerCase())
-        );
+        if (!data || !searchTerm.trim()) return data || [];
+
+        const searchTermLower = searchTerm.toLowerCase().trim();
+
+        return data.filter(item => {
+            // Search across all columns that are defined for this entity
+            return columns.some(column => {
+                const value = item[column.accessor];
+                return value && value.toString().toLowerCase().includes(searchTermLower);
+            });
+        });
     }, [data, searchTerm, columns]);
 
+    // Handle search with Enter key like FilmeController
+    const handleSearchKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            // Search is already handled by the filteredData useMemo
+        }
+    };
+
+    const handleClearSearch = () => {
+        setSearchTerm('');
+    };
 
     const tableColumns = [
         ...columns,
@@ -96,14 +119,24 @@ export const EntityPage = ({
             header: 'Actions',
             accessor: 'id',
             cell: (id, rowData) => (
-                <>
-                    <Button variant="outline-primary" size="sm" onClick={() => handleOpenFormModal(rowData)} className="me-2">
-                        Edit
+                <div className="d-flex gap-2">
+                    <Button
+                        variant="outline-primary"
+                        size="sm"
+                        onClick={() => handleOpenFormModal(rowData)}
+                        title={`Edit ${entityName.toLowerCase()}`}
+                    >
+                        <i className="bi bi-pencil-square"></i>
                     </Button>
-                    <Button variant="outline-danger" size="sm" onClick={() => handleOpenDeleteModal(rowData)}>
-                        Delete
+                    <Button
+                        variant="outline-danger"
+                        size="sm"
+                        onClick={() => handleOpenDeleteModal(rowData)}
+                        title={`Delete ${entityName.toLowerCase()}`}
+                    >
+                        <i className="bi bi-trash-fill"></i>
                     </Button>
-                </>
+                </div>
             )
         }
     ];
@@ -113,27 +146,78 @@ export const EntityPage = ({
             <header className="d-flex justify-content-between align-items-center my-4">
                 <h2>{entityLabel}</h2>
                 <Button variant="primary" onClick={() => handleOpenFormModal()}>
+                    <i className="bi bi-plus-lg me-2"></i>
                     New {entityName}
                 </Button>
             </header>
 
-            <div className="row mb-4">
-                <div className="col-md-8">
+            {error && (
+                <Alert variant="danger" onClose={() => setError(null)} dismissible>
+                    {error}
+                </Alert>
+            )}
+
+            {/* Enhanced search section */}
+            <Row className="mb-4">
+                <Col md={8}>
                     <InputGroup>
                         <Form.Control
                             type="text"
-                            placeholder={`Search by ${entityName} name or title`}
+                            placeholder={`Search ${entityLabel.toLowerCase()}...`}
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
+                            onKeyPress={handleSearchKeyPress}
                         />
+                        {searchTerm && (
+                            <Button
+                                variant="outline-secondary"
+                                onClick={handleClearSearch}
+                                title="Clear search"
+                            >
+                                <i className="bi bi-x-lg"></i>
+                            </Button>
+                        )}
+                        <Button
+                            variant="primary"
+                            onClick={() => {/* Search is reactive, no action needed */ }}
+                            title="Search"
+                        >
+                            <i className="bi bi-search"></i>
+                        </Button>
                     </InputGroup>
-                </div>
-            </div>
+                </Col>
+                <Col md={4} className="d-flex align-items-center">
+                    <small className="text-muted">
+                        {filteredData.length} of {data.length} {entityLabel.toLowerCase()} found
+                    </small>
+                </Col>
+            </Row>
 
-            {loading && <p>Loading...</p>}
-            {error && <p className="text-danger">{error}</p>}
+            {loading && (
+                <div className="text-center py-4">
+                    <div className="spinner-border" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            )}
+
             {!loading && !error && (
-                <GenericDataTable data={filteredData} columns={tableColumns} />
+                <>
+                    {filteredData.length === 0 && searchTerm ? (
+                        <Alert variant="info">
+                            No {entityLabel.toLowerCase()} found matching "{searchTerm}".
+                            <Button
+                                variant="link"
+                                className="p-0 ms-2"
+                                onClick={handleClearSearch}
+                            >
+                                Clear search
+                            </Button>
+                        </Alert>
+                    ) : (
+                        <GenericDataTable data={filteredData} columns={tableColumns} />
+                    )}
+                </>
             )}
 
             {FormComponent && (
@@ -150,19 +234,31 @@ export const EntityPage = ({
                     <Modal.Title>Confirm Deletion</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    Are you sure you want to delete this {entityName}?
-                    <p className="text-danger">This action cannot be undone.</p>
+                    {selectedItem && (
+                        <>
+                            <h5>Are you sure you want to delete this {entityName.toLowerCase()}?</h5>
+                            {/* Show entity identifier if available */}
+                            {(selectedItem.title || selectedItem.name) && (
+                                <p className="mb-3">
+                                    <strong>"{selectedItem.title || selectedItem.name}"</strong>
+                                </p>
+                            )}
+                            <p className="text-danger mt-3">
+                                <i className="bi bi-exclamation-triangle-fill me-2"></i>
+                                This action cannot be undone.
+                            </p>
+                        </>
+                    )}
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleCloseDeleteModal}>
                         Cancel
                     </Button>
                     <Button variant="danger" onClick={handleDelete}>
-                        Delete
+                        Delete {entityName}
                     </Button>
                 </Modal.Footer>
             </Modal>
-
         </Container>
     );
 };
