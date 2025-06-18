@@ -3,10 +3,21 @@ import { CreateSessionDto } from './dto/create-session.dto';
 import { UpdateSessionDto } from './dto/update-session.dto';
 import { PrismaService } from '../prisma/prisma.service';
 import { Session } from 'generated/prisma';
+import { format } from 'path';
 
 @Injectable()
 export class SessionService {
   constructor(private readonly prisma: PrismaService) {}
+
+  private parseDate(dateString: string): Date {
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) {
+      throw new Error(
+        'Invalid date format. Please use YYYY-MM-DD or ISO-8601 format.',
+      );
+    }
+    return date;
+  }
 
   async create(createSessionDto: CreateSessionDto): Promise<Session> {
     await this.prisma.movie.findUniqueOrThrow({
@@ -17,7 +28,14 @@ export class SessionService {
     });
 
     return this.prisma.session.create({
-      data: createSessionDto,
+      data: {
+        dateTime: createSessionDto.dateTime,
+        price: createSessionDto.price,
+        format: createSessionDto.format,
+        language: createSessionDto.language,
+        theaterId: createSessionDto.theaterId,
+        movieId: createSessionDto.movieId,
+      },
     });
   }
 

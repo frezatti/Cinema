@@ -87,7 +87,7 @@ export const SessionModal = ({ show, handleClose, entity, onSave }) => {
                         <Form.Control
                             type="datetime-local"
                             name="dateTime"
-                            value={formData.dateTime ? new Date(formData.dateTime).toISOString().slice(0, 16) : ''}
+                            value={formData.dateTime ? new Date(formData.dateTime).toISOString() : ''}
                             onChange={handleChange}
                             required
                         />
