@@ -111,7 +111,7 @@ export const MovieFormModal = ({ show, handleClose, entity, onSave }) => {
                 duration: parseInt(formData.duration),
                 releaseDate: new Date(formData.releaseDate).toISOString(),
                 description: formData.description?.trim() || '',
-                poster: formData.poster || currentImage || 'https://via.placeholder.com/300x450/cccccc/666666?text=No+Image'
+                poster: formData.poster || currentImage || ''
             };
 
             if (entity?.id) {
@@ -231,8 +231,8 @@ export const MovieFormModal = ({ show, handleClose, entity, onSave }) => {
                                             <option value="G">G - General Audiences</option>
                                             <option value="PG">PG - Parental Guidance</option>
                                             <option value="PG-13">PG-13 - Parents Strongly Cautioned</option>
+                                            <option value="18+">18+ - Adults Only</option>
                                             <option value="R">R - Restricted</option>
-                                            <option value="NC-17">NC-17 - Adults Only</option>
                                         </Form.Select>
                                     </Form.Group>
                                 </Col>
