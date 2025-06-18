@@ -1,9 +1,5 @@
-Of course. Here is a comprehensive, merged `README.md` for the entire "Cinema" project, designed to be placed at the root of your repository.
-
------
-
 # Cinema Full-Stack Application
-
+---
 This project is a full-stack web application for a cinema, including a frontend, backend, database, and reverse proxy, all orchestrated with Docker.
 
 ## Table of Contents
