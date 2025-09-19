@@ -35,7 +35,6 @@ const Home = () => {
                     getAllTheaters(),
                 ]);
 
-                // Normalize movie data to handle both English and Portuguese properties
                 const normalizedMovies = moviesData.map((movie) => ({
                     id: movie.id,
                     titulo: movie.titulo || movie.title || "",

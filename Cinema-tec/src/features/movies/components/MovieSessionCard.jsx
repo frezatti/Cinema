@@ -73,12 +73,6 @@ const MovieSessionCard = ({ movie, sessions, theaters, onPurchaseClick }) => {
                                         <br />
                                         <strong>Preço:</strong> {formatPrice(session.preco || session.price)}
                                     </div>
-                                    <Button
-                                        className="btn-primary btn-sm mt-2 align-self-end"
-                                        onClick={() => onPurchaseClick(session)}
-                                    >
-                                        Comprar Ingresso
-                                    </Button>
                                 </li>
                             );
                         })}

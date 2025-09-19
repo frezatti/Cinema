@@ -31,7 +31,8 @@ export const SessionModal = ({ show, handleClose, entity, onSave }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         onSave({
-            ...formData,
+            language: formData.language,
+            format: formData.format,
             price: parseFloat(formData.price),
             movieId: parseInt(formData.movieId),
             theaterId: parseInt(formData.theaterId),

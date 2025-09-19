@@ -18,7 +18,7 @@ export const Theater = () => {
             accessor: 'type',
             cell: (type) => (
                 <span className={`badge ${type === 'IMAX' ? 'bg-primary' :
-                        type === '3D' ? 'bg-success' : 'bg-secondary'
+                    type === '3D' ? 'bg-success' : 'bg-secondary'
                     }`}>
                     {type}
                 </span>

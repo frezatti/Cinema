@@ -7,7 +7,7 @@ import Button from "@/components/button";
 import Alert from "react-bootstrap/Alert";
 import Spinner from "react-bootstrap/Spinner";
 import * as sessionService from '@/features/sessions/services/sessionService';
-import * as theaterService from '@/features/theaters/services/theaterService';
+import * as theaterService from '@/features/theater/services/theaterService';
 import * as movieService from '@/features/movies/services/movieService';
 
 const TicketModal = ({ show, handleClose, entity, onSave }) => {
@@ -22,7 +22,7 @@ const TicketModal = ({ show, handleClose, entity, onSave }) => {
         sessionId: '',
         customerName: '',
         cpf: '',
-        seatNumber: '',
+        seat: '',
         quantity: 1,
         paymentType: 'credit'
     });
@@ -36,17 +36,16 @@ const TicketModal = ({ show, handleClose, entity, onSave }) => {
                     sessionId: entity.sessionId || '',
                     customerName: entity.customerName || '',
                     cpf: entity.cpf || '',
-                    seatNumber: entity.seatNumber || entity.seat_number || '',
+                    seat: entity.seat || entity.seat_number || '',
                     quantity: entity.quantity || 1,
                     paymentType: entity.paymentType || 'credit'
                 });
             } else {
-                // Reset for new ticket
                 setFormData({
                     sessionId: '',
                     customerName: '',
                     cpf: '',
-                    seatNumber: '',
+                    seat: '',
                     quantity: 1,
                     paymentType: 'credit'
                 });
@@ -115,7 +114,6 @@ const TicketModal = ({ show, handleClose, entity, onSave }) => {
         try {
             const ticketData = {
                 ...formData,
-                purchaseTime: new Date().toISOString()
             };
 
             await onSave(ticketData);
@@ -243,8 +241,8 @@ const TicketModal = ({ show, handleClose, entity, onSave }) => {
                                         <Form.Label>Seat Number *</Form.Label>
                                         <Form.Control
                                             type="text"
-                                            value={formData.seatNumber}
-                                            onChange={(e) => handleInputChange('seatNumber', e.target.value)}
+                                            value={formData.seat}
+                                            onChange={(e) => handleInputChange('seat', e.target.value)}
                                             placeholder="Ex: A1, B5"
                                             required
                                             disabled={isLoading}
@@ -302,7 +300,7 @@ const TicketModal = ({ show, handleClose, entity, onSave }) => {
 
                 <Modal.Footer>
                     <Button
-                        className="btn-secondary"
+                        variant="secondary"
                         onClick={handleClose}
                         disabled={isLoading}
                     >
@@ -310,10 +308,11 @@ const TicketModal = ({ show, handleClose, entity, onSave }) => {
                     </Button>
                     {!isSuccess && (
                         <Button
-                            className="btn-primary"
+                            variant="primary"
                             type="submit"
-                            disabled={isLoading || !formData.sessionId || !formData.customerName.trim() || !formData.seatNumber.trim()}
-                        >
+
+                            disabled={isLoading || !formData.sessionId || !formData.customerName.trim() || !formData.seat.trim()}
+                        > Save
                             {isLoading ? (
                                 <>
                                     <Spinner
