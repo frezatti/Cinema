@@ -12,13 +12,16 @@ export class CreateTicketDto {
   customerName: string;
 
   @IsString()
-  @IsNotEmpty()
   @IsOptional()
   cpf?: string;
 
   @IsString()
   @IsNotEmpty()
   seat: string;
+
+  @IsInt()
+  @IsPositive()
+  quantity: number;
 
   @IsString()
   @IsNotEmpty()

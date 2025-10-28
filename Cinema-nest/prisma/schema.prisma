@@ -74,6 +74,7 @@ model Ticket {
     cpf          String?  @unique
     seat         String
     paymentType  String
+    quantity     Int
     purchaseDate DateTime @default(now())
 
     sessionId Int
